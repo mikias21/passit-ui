@@ -4,14 +4,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        // body: ["Nunito Sans", "sans-serif"],
-        body: ["Open Sans", "sans-serif"],
+        body: ["Work Sans", "sans-serif"],
       },
       colors: {
-        black: "#121212",
-        green: "#00684A",
-        white: "#FFFFFF",
-        whitesmoke: "#CCC",
+        blue: "#3742fa",
+        gray: "#ced6e0",
       },
     },
   },

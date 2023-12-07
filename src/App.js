@@ -1,9 +1,12 @@
+// Pages
+import SignupPage from "./pages/SignupPage/SignupPage";
+
 import "./App.css";
 
 function App() {
   return (
     <div className="app">
-      <p className=" font-body text-green">Hello world</p>
+      <SignupPage />
     </div>
   );
 }
