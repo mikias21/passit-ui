@@ -26,7 +26,7 @@ const SignupPage = () => {
             info="Create your account using your email and password."
           />
           <EmailInput />
-          <PasswordInput />
+          <PasswordInput label="Password" placeholder="Your password" />
           <FormButton title="Create an account" />
           <p className="mt-10 text-gray-600 text-sm">
             Already have an account?{"  "}

@@ -4,7 +4,7 @@ import EmailInput from "../../components/formComponents/EmailInput";
 import PasswordInput from "../../components/formComponents/PasswordInput";
 import FormButton from "../../components/formComponents/FormButton";
 
-const SigninPage = () => {
+const ResetPassword = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="mx-auto p-8 md:flex md:space-x-20">
@@ -22,12 +22,15 @@ const SigninPage = () => {
 
         <div className="w-full md:w-1/2 font-body">
           <FormHeader
-            title="Sign in to your passit account"
-            info="Use your email and password to log in."
+            title="Change password for your account"
+            info="Use strong password to keep your account safe."
           />
-          <EmailInput />
           <PasswordInput label="Password" placeholder="Your password" />
-          <FormButton title="Sign in" />
+          <PasswordInput
+            label="Confirm password"
+            placeholder="Confirm your password"
+          />
+          <FormButton title="Update password" />
           <p className="mt-10 text-gray-600 text-sm">
             Create Account?{"  "}
             <a href="google" className="text-blue font-semibold">
@@ -40,10 +43,16 @@ const SigninPage = () => {
               Help
             </a>
           </p>
+          <p className="mt-2 text-gray-600 text-sm">
+            Already Have an Account?{"  "}
+            <a href="google" className="text-blue font-semibold">
+              Sign in
+            </a>
+          </p>
         </div>
       </div>
     </div>
   );
 };
 
-export default SigninPage;
+export default ResetPassword;

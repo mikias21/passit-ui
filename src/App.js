@@ -1,6 +1,7 @@
 // Pages
 import SignupPage from "./pages/Signup/SignupPage";
 import SigninPage from "./pages/Signin/SigninPage";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import VerifyAccount from "./pages/VerifyAccount/VerifyAccount";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ActivateAccount from "./pages/ActivateAccount/ActivateAccount";
@@ -14,7 +15,8 @@ function App() {
       {/* <SigninPage /> */}
       {/* <ActivateAccount /> */}
       {/* <VerifyAccount /> */}
-      <ForgotPassword />
+      {/* <ForgotPassword /> */}
+      <ResetPassword />
     </div>
   );
 }
