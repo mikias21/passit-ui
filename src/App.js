@@ -13,16 +13,18 @@ import "./App.css";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/signin" Component={SigninPage} />
-        <Route path="/signup" Component={SignupPage} />
-        <Route path="/reset" Component={ResetPassword} />
-        <Route path="/forgot" Component={ForgotPassword} />
-        <Route path="/verify" Component={VerifyAccount} />
-        <Route path="/activate" Component={ActivateAccount} />
-      </Routes>
-    </Router>
+    <div className="dark:bg-black">
+      <Router>
+        <Routes>
+          <Route path="/signin" Component={SigninPage} />
+          <Route path="/signup" Component={SignupPage} />
+          <Route path="/reset" Component={ResetPassword} />
+          <Route path="/forgot" Component={ForgotPassword} />
+          <Route path="/verify" Component={VerifyAccount} />
+          <Route path="/activate" Component={ActivateAccount} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

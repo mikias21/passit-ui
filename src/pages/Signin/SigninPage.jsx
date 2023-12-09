@@ -5,11 +5,13 @@ import FormHeader from "../../components/formComponents/FormHeader";
 import EmailInput from "../../components/formComponents/EmailInput";
 import PasswordInput from "../../components/formComponents/PasswordInput";
 import FormButton from "../../components/formComponents/FormButton";
+import ThemeSwitcher from "../../components/utilComponents/ThemeSwticher";
 
 const SigninPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="mx-auto p-8 md:flex md:space-x-20">
+      <ThemeSwitcher />
+      <div className="mx-auto p-8 md:flex md:space-x-20 dark:bg-gray-800">
         <div className="hidden md:block md:w-1/2 md:pr-8">
           <div className="mb-8">
             <h2 className="text-3xl font-extrabold text-secondary mb-4 font-body text-center">
