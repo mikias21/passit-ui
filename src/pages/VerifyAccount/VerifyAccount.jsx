@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // Components
 import PINInput from "../../components/formComponents/PINInput";
 import FormHeader from "../../components/formComponents/FormHeader";
@@ -28,9 +30,9 @@ const VerifyAccount = () => {
           <FormButton title="Verify Account" />
           <p className="mt-10 text-gray-600 text-sm">
             Create Account?{"  "}
-            <a href="google" className="text-blue font-semibold">
+            <Link to="/signup" className="text-blue font-semibold">
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </div>

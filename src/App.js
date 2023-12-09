@@ -1,3 +1,6 @@
+import { BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes } from "react-router";
+
 // Pages
 import SignupPage from "./pages/Signup/SignupPage";
 import SigninPage from "./pages/Signin/SigninPage";
@@ -10,14 +13,16 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="app">
-      {/* <SignupPage /> */}
-      {/* <SigninPage /> */}
-      {/* <ActivateAccount /> */}
-      {/* <VerifyAccount /> */}
-      {/* <ForgotPassword /> */}
-      <ResetPassword />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/signin" Component={SigninPage} />
+        <Route path="/signup" Component={SignupPage} />
+        <Route path="/reset" Component={ResetPassword} />
+        <Route path="/forgot" Component={ForgotPassword} />
+        <Route path="/verify" Component={VerifyAccount} />
+        <Route path="/activate" Component={ActivateAccount} />
+      </Routes>
+    </Router>
   );
 }
 

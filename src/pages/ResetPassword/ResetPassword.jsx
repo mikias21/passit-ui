@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
+
 // Components
 import FormHeader from "../../components/formComponents/FormHeader";
-import EmailInput from "../../components/formComponents/EmailInput";
 import PasswordInput from "../../components/formComponents/PasswordInput";
 import FormButton from "../../components/formComponents/FormButton";
 
@@ -33,21 +34,15 @@ const ResetPassword = () => {
           <FormButton title="Update password" />
           <p className="mt-10 text-gray-600 text-sm">
             Create Account?{"  "}
-            <a href="google" className="text-blue font-semibold">
+            <Link to="/signup" className="text-blue font-semibold">
               Sign up
-            </a>
-          </p>
-          <p className="mt-2 text-gray-600 text-sm">
-            Forgot password? {"  "}
-            <a href="google" className="text-blue font-semibold">
-              Help
-            </a>
+            </Link>
           </p>
           <p className="mt-2 text-gray-600 text-sm">
             Already Have an Account?{"  "}
-            <a href="google" className="text-blue font-semibold">
+            <Link to="/signin" className="text-blue font-semibold">
               Sign in
-            </a>
+            </Link>
           </p>
         </div>
       </div>

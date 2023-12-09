@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // Components
 import FormHeader from "../../components/formComponents/FormHeader";
 import EmailInput from "../../components/formComponents/EmailInput";
@@ -30,9 +32,9 @@ const SignupPage = () => {
           <FormButton title="Create an account" />
           <p className="mt-10 text-gray-600 text-sm">
             Already have an account?{"  "}
-            <a href="google" className="text-blue font-semibold">
+            <Link to="/signin" className="text-blue font-semibold">
               Sign In
-            </a>
+            </Link>
           </p>
         </div>
       </div>
