@@ -11,7 +11,7 @@ const PINInput = () => {
             key={index}
             type="text"
             maxLength="1"
-            className="w-10 h-10 border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary text-center"
+            className="w-10 h-10 border border-slate-300 p-2 rounded focus:outline-none focus:border-secondary text-center"
           />
         ))}
       </div>
