@@ -4,7 +4,7 @@ import EmailInput from "../../components/formComponents/EmailInput";
 import PasswordInput from "../../components/formComponents/PasswordInput";
 import FormButton from "../../components/formComponents/FormButton";
 
-const SignupPage = () => {
+const SigninPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="mx-auto p-8 md:flex md:space-x-20">
@@ -22,16 +22,22 @@ const SignupPage = () => {
 
         <div className="w-full md:w-1/2 font-body">
           <FormHeader
-            title="Sign Up to passit"
-            info="Create your account using your email and password."
+            title="Sign in to your passit account"
+            info="Use your email and password to log in."
           />
           <EmailInput />
           <PasswordInput />
-          <FormButton title="Create an account" />
+          <FormButton title="Sign in" />
           <p className="mt-10 text-gray-600 text-sm">
-            Already have an account?{"  "}
+            Create Account?{"  "}
             <a href="google" className="text-blue font-semibold">
-              Sign In
+              Sign up
+            </a>
+          </p>
+          <p className="mt-2 text-gray-600 text-sm">
+            Forgot password? {"  "}
+            <a href="google" className="text-blue font-semibold">
+              Help
             </a>
           </p>
         </div>
@@ -40,4 +46,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default SigninPage;
