@@ -1,63 +1,28 @@
 import { useState } from "react";
-import { FaHome, FaChartBar, FaUsers, FaCog, FaBars } from "react-icons/fa";
-
-// 768px md
+import Sidebar from "../../components/dashboardComponents/Sidebar";
+import Header from "../../components/dashboardComponents/Header";
 
 const Dashboard = () => {
-  const [isContainerAVisible, setContainerAVisible] = useState(false);
-
-  const toggleContainers = () => {
-    setContainerAVisible(!isContainerAVisible);
-  };
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      <nav className="md:block bg-blue-600 w-64 flex-shrink-0">
-        <div className="p-4">
-          <h1 className="text-2xl font-semibold">Admin</h1>
+    <div className="dark:bg-boxdark-2 dark:text-bodydark">
+      <div className="flex h-screen overflow-hidden">
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        {/* <!-- ===== Content Area Start ===== --> */}
+        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+          {/* <!-- ===== Header Start ===== --> */}
+          <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          {/* <!-- ===== Header End ===== --> */}
+
+          {/* <!-- ===== Main Content Start ===== --> */}
+          {/* <main>
+            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+              <Outlet />
+            </div>
+          </main> */}
+          {/* <!-- ===== Main Content End ===== --> */}
         </div>
-
-        <ul className="space-y-4 py-2">
-          <li className="flex items-center px-4 py-2">
-            <FaHome className="mr-2" />
-            Dashboard
-          </li>
-          <li className="flex items-center px-4 py-2">
-            <FaChartBar className="mr-2" />
-            Analytics
-          </li>
-          <li className="flex items-center px-4 py-2">
-            <FaUsers className="mr-2" />
-            Users
-          </li>
-          <li className="flex items-center px-4 py-2">
-            <FaCog className="mr-2" />
-            Settings
-          </li>
-        </ul>
-      </nav>
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Navbar */}
-        <header className="bg-slate-200 shadow flex justify-between items-center">
-          <div>
-            <FaBars className="bg-red" onClick={toggleContainers} />
-          </div>
-          <div>
-            <input type="text" placeholder="hello world" />
-          </div>
-          <div className="bg-red-500 w-8 h-8 rounded-full"></div>
-        </header>
-
-        {/* Main Content Area */}
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-slate-400">
-          <div className="container mx-auto px-4 py-6">
-            {/* Your content goes here */}
-            <h2 className="text-xl font-semibold mb-4">Dashboard Content</h2>
-            <p>Your charts, tables, and other content go here.</p>
-          </div>
-        </main>
       </div>
     </div>
   );
