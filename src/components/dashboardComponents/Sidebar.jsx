@@ -62,7 +62,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-white duration-300 font-open ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
+      className={`absolute z-50 left-0 top-0 flex h-screen w-72.5 flex-col overflow-y-hidden bg-white duration-300 font-open ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -82,10 +82,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         ></button>
       </div>
 
-      <div
-        className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear text-slate-500 text-xs"
-        style={{ marginTop: "-10px" }}
-      >
+      <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear text-slate-500 text-xs mt-7 lg:-mt-7">
         <nav className="-mt-5 py-4 px-4 lg:mt-9 lg:px-6">
           <div>
             <h3 className="mb-2 ml-4 font-semibold">Menu</h3>
