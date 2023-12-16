@@ -21,7 +21,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           </button>
         </div>
 
-        <div className="hidden sm:block">
+        <div className="hidden sm:block w-9/12">
           <form action="" method="POST">
             <div className="relative">
               <button className="absolute top-1/2 left-0 -translate-y-1/2">
@@ -30,7 +30,7 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
               <input
                 type="text"
                 placeholder="Type to search..."
-                className="w-full bg-transparent pr-4 pl-9 focus:outline-none"
+                className="w-full bg-transparent pr-4 pl-9 focus:outline-none h-12"
               />
             </div>
           </form>

@@ -80,15 +80,15 @@ const DropdownUser = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute right-0 mt-4 p-2 flex w-62.5 flex-col rounded-md bg-white shadow-md font-open  ${
+        className={`absolute right-0 mt-4 p-3 flex flex-col rounded-md bg-white shadow-md font-open w-full  ${
           dropdownOpen === true ? "block" : "hidden"
         }`}
       >
-        <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
+        <ul className="flex flex-col gap-3 border-b border-stroke py-7.5 dark:border-strokedark">
           <li>
             <Link
               to="/profile"
-              className="flex items-center gap-3.5 text-xs font-medium duration-300 ease-in-out hover:text-primary"
+              className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-slate-100 rounded-sm"
             >
               <FaUserAlt />
               Profile
@@ -97,14 +97,14 @@ const DropdownUser = () => {
           <li>
             <Link
               to="/settings"
-              className="flex items-center gap-3.5 text-xs font-medium duration-300 ease-in-out hover:text-primary mb-4"
+              className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary mb-4 w-full hover:bg-slate-100 rounded-sm"
             >
               <FaUserCog />
               Settings
             </Link>
           </li>
         </ul>
-        <button className="flex items-center gap-3.5 py-4 px-6 text-xs font-medium duration-300 ease-in-out hover:text-primary">
+        <button className="flex items-center gap-3.5 py-4 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full">
           <IoLogOutSharp />
           Log Out
         </button>
