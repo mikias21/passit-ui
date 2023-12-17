@@ -35,7 +35,7 @@ const DropdownUser = () => {
   });
 
   return (
-    <div className="relative">
+    <div className="relative font-popins">
       <Link
         ref={trigger}
         onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -80,7 +80,7 @@ const DropdownUser = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute right-0 mt-4 p-3 flex flex-col rounded-md bg-white shadow-md font-open w-full  ${
+        className={`absolute right-0 mt-4 p-3 flex flex-col rounded-md bg-white shadow-md font-popins w-full  ${
           dropdownOpen === true ? "block" : "hidden"
         }`}
       >
@@ -88,7 +88,7 @@ const DropdownUser = () => {
           <li>
             <Link
               to="/profile"
-              className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-slate-100 rounded-sm"
+              className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-[#BFDBFE] rounded-sm"
             >
               <FaUserAlt />
               Profile
@@ -97,7 +97,7 @@ const DropdownUser = () => {
           <li>
             <Link
               to="/settings"
-              className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary mb-4 w-full hover:bg-slate-100 rounded-sm"
+              className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary mb-4 w-full hover:bg-[#BFDBFE] rounded-sm"
             >
               <FaUserCog />
               Settings

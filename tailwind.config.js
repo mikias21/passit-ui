@@ -8,6 +8,7 @@ module.exports = {
         body: ["Work Sans", "sans-serif"],
         afacad: ["Afacad", "sans-serif"],
         open: ["Open Sans", "sans-serif"],
+        popins: ["Poppins", "sans-serif"],
       },
       colors: {
         blue: "#3742fa",
