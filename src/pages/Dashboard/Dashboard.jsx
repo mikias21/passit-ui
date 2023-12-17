@@ -5,6 +5,7 @@ import Sidebar from "../../components/dashboardComponents/Sidebar";
 import Header from "../../components/dashboardComponents/Header";
 import CardOne from "../../components/dashboardComponents/CardOne";
 import TableOne from "../../components/dashboardComponents/TableOne";
+import AddButton from "../../components/dashboardComponents/AddButton";
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -15,7 +16,6 @@ const Dashboard = () => {
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-
           <main>
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
@@ -28,6 +28,7 @@ const Dashboard = () => {
                 <TableOne />
               </div>
             </div>
+            <AddButton />
           </main>
         </div>
       </div>

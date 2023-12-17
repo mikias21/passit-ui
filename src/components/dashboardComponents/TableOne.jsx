@@ -60,6 +60,126 @@ const TableOne = () => {
             <LuView className="text-blue cursor-pointer" />
           </div>
         </div>
+        <div className="grid grid-cols-3 border-b border-slate-200 dark:border-strokedark sm:grid-cols-5">
+          <div className="flex items-center gap-3 p-2.5 xl:p-5">
+            <div className="flex-shrink-0">
+              <p>Hello</p>
+            </div>
+            <p className="hidden text-black dark:text-white sm:block">Google</p>
+          </div>
+
+          <div className="flex items-center justify-center p-2.5 xl:p-5">
+            <p className="text-black dark:text-white">3.5K</p>
+          </div>
+
+          <div className="flex items-center justify-center p-2.5 xl:p-5">
+            <p className="text-meta-3">$5,768</p>
+          </div>
+
+          <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+            <p className="text-black dark:text-white">590</p>
+          </div>
+
+          <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5 sm:items-center sm:justify-center sm:space-x-7 text-2xl">
+            <LuView className="text-blue cursor-pointer" />
+          </div>
+        </div>
+        <div className="grid grid-cols-3 border-b border-slate-200 dark:border-strokedark sm:grid-cols-5">
+          <div className="flex items-center gap-3 p-2.5 xl:p-5">
+            <div className="flex-shrink-0">
+              <p>Hello</p>
+            </div>
+            <p className="hidden text-black dark:text-white sm:block">Google</p>
+          </div>
+
+          <div className="flex items-center justify-center p-2.5 xl:p-5">
+            <p className="text-black dark:text-white">3.5K</p>
+          </div>
+
+          <div className="flex items-center justify-center p-2.5 xl:p-5">
+            <p className="text-meta-3">$5,768</p>
+          </div>
+
+          <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+            <p className="text-black dark:text-white">590</p>
+          </div>
+
+          <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5 sm:items-center sm:justify-center sm:space-x-7 text-2xl">
+            <LuView className="text-blue cursor-pointer" />
+          </div>
+        </div>
+        <div className="grid grid-cols-3 border-b border-slate-200 dark:border-strokedark sm:grid-cols-5">
+          <div className="flex items-center gap-3 p-2.5 xl:p-5">
+            <div className="flex-shrink-0">
+              <p>Hello</p>
+            </div>
+            <p className="hidden text-black dark:text-white sm:block">Google</p>
+          </div>
+
+          <div className="flex items-center justify-center p-2.5 xl:p-5">
+            <p className="text-black dark:text-white">3.5K</p>
+          </div>
+
+          <div className="flex items-center justify-center p-2.5 xl:p-5">
+            <p className="text-meta-3">$5,768</p>
+          </div>
+
+          <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+            <p className="text-black dark:text-white">590</p>
+          </div>
+
+          <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5 sm:items-center sm:justify-center sm:space-x-7 text-2xl">
+            <LuView className="text-blue cursor-pointer" />
+          </div>
+        </div>
+        <div className="grid grid-cols-3 border-b border-slate-200 dark:border-strokedark sm:grid-cols-5">
+          <div className="flex items-center gap-3 p-2.5 xl:p-5">
+            <div className="flex-shrink-0">
+              <p>Hello</p>
+            </div>
+            <p className="hidden text-black dark:text-white sm:block">Google</p>
+          </div>
+
+          <div className="flex items-center justify-center p-2.5 xl:p-5">
+            <p className="text-black dark:text-white">3.5K</p>
+          </div>
+
+          <div className="flex items-center justify-center p-2.5 xl:p-5">
+            <p className="text-meta-3">$5,768</p>
+          </div>
+
+          <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+            <p className="text-black dark:text-white">590</p>
+          </div>
+
+          <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5 sm:items-center sm:justify-center sm:space-x-7 text-2xl">
+            <LuView className="text-blue cursor-pointer" />
+          </div>
+        </div>
+        <div className="grid grid-cols-3 border-b border-slate-200 dark:border-strokedark sm:grid-cols-5">
+          <div className="flex items-center gap-3 p-2.5 xl:p-5">
+            <div className="flex-shrink-0">
+              <p>Hello</p>
+            </div>
+            <p className="hidden text-black dark:text-white sm:block">Google</p>
+          </div>
+
+          <div className="flex items-center justify-center p-2.5 xl:p-5">
+            <p className="text-black dark:text-white">3.5K</p>
+          </div>
+
+          <div className="flex items-center justify-center p-2.5 xl:p-5">
+            <p className="text-meta-3">$5,768</p>
+          </div>
+
+          <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
+            <p className="text-black dark:text-white">590</p>
+          </div>
+
+          <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5 sm:items-center sm:justify-center sm:space-x-7 text-2xl">
+            <LuView className="text-blue cursor-pointer" />
+          </div>
+        </div>
       </div>
     </div>
   );
