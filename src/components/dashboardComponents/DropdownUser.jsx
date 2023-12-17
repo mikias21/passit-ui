@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
-import { FaUserCog } from "react-icons/fa";
+import { IoSettingsSharp } from "react-icons/io5";
 import { IoLogOutSharp } from "react-icons/io5";
 
 const DropdownUser = () => {
@@ -90,7 +90,7 @@ const DropdownUser = () => {
               to="/profile"
               className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-[#BFDBFE] rounded-sm"
             >
-              <FaUserAlt />
+              <FaUserAlt className="text-lg" />
               Profile
             </Link>
           </li>
@@ -99,13 +99,13 @@ const DropdownUser = () => {
               to="/settings"
               className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary mb-4 w-full hover:bg-[#BFDBFE] rounded-sm"
             >
-              <FaUserCog />
+              <IoSettingsSharp className="text-lg" />
               Settings
             </Link>
           </li>
         </ul>
-        <button className="flex items-center gap-3.5 py-4 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full">
-          <IoLogOutSharp />
+        <button className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-red-100 rounded-sm">
+          <IoLogOutSharp className="text-lg" />
           Log Out
         </button>
       </div>
