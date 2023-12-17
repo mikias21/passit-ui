@@ -1,6 +1,4 @@
-import { MdEdit } from "react-icons/md";
-import { MdDelete } from "react-icons/md";
-import { MdContentCopy } from "react-icons/md";
+import { LuView } from "react-icons/lu";
 
 const TableOne = () => {
   return (
@@ -59,9 +57,7 @@ const TableOne = () => {
           </div>
 
           <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5 sm:items-center sm:justify-center sm:space-x-7 text-2xl">
-            <MdContentCopy className="text-blue" />
-            <MdEdit className="text-[#EAB308]" />
-            <MdDelete className="text-[#EF4444]" />
+            <LuView className="text-blue cursor-pointer" />
           </div>
         </div>
       </div>
