@@ -2,6 +2,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Routes } from "react-router";
 
 // Pages
+import Signout from "./pages/Signout/Signout";
 import Landing from "./pages/Landing/Landing";
 import SignupPage from "./pages/Signup/SignupPage";
 import SigninPage from "./pages/Signin/SigninPage";
@@ -26,6 +27,7 @@ function App() {
           <Route path="/forgot" Component={ForgotPassword} />
           <Route path="/verify" Component={VerifyAccount} />
           <Route path="/activate" Component={ActivateAccount} />
+          <Route path="/signout" Component={Signout} />
         </Routes>
       </Router>
     </div>

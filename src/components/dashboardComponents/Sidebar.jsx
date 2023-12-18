@@ -8,6 +8,7 @@ import { MdDelete } from "react-icons/md";
 import { GrSystem } from "react-icons/gr";
 import { FaUserCog } from "react-icons/fa";
 import { IoLogOutSharp } from "react-icons/io5";
+import { IoMdAdd } from "react-icons/io";
 
 // Components
 import SidebarLinkGroup from "./SidebarLinkGroup";
@@ -185,14 +186,20 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                             !open && "hidden"
                           }`}
                         >
-                          <ul className="mt-1 mb-5.5 pl-8">
-                            <li>
+                          <ul className="mt-1 mb-5.5 pl-10">
+                            <li className="mb-2">
                               <Link
                                 to="/ui/alerts"
-                                className={({ isActive }) =>
-                                  "group relative items-center gap-2.5 rounded-md duration-300 ease-in-out text-xs hover:bg-[#BFDBFE]" +
-                                  (isActive && "!text-white")
-                                }
+                                className=" flex group relative items-center gap-1 rounded-md duration-300 ease-in-out text-xs font-bold"
+                              >
+                                <IoMdAdd className="text-base" />
+                                Add
+                              </Link>
+                            </li>
+                            <li className="mb-2 pl-1">
+                              <Link
+                                to="/ui/alerts"
+                                className="group relative items-center gap-2.5 rounded-md duration-300 ease-in-out"
                               >
                                 Main
                               </Link>
@@ -248,7 +255,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               </li>
               <li>
                 <Link
-                  to="/chart"
+                  to="/signout"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] ${
                     pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
                   }`}

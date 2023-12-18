@@ -104,10 +104,13 @@ const DropdownUser = () => {
             </Link>
           </li>
         </ul>
-        <button className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-red-100 rounded-sm">
+        <Link
+          to="/signout"
+          className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-red-100 rounded-sm"
+        >
           <IoLogOutSharp className="text-lg" />
           Log Out
-        </button>
+        </Link>
       </div>
     </div>
   );
