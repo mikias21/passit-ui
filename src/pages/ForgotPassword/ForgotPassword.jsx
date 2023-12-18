@@ -1,11 +1,43 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
+// Icons
+import { FaEnvelope } from "react-icons/fa";
+
 // Components
-import FormHeader from "../../components/formComponents/FormHeader";
-import EmailInput from "../../components/formComponents/EmailInput";
 import FormButton from "../../components/formComponents/FormButton";
 
+// Service
+import forgotPasswordService from "../../services/forgotPasswordService";
+
 const ForgotPassword = () => {
+  const [message, setMessage] = useState(
+    "Use your email to reset your passit account password."
+  );
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [email, setEmail] = useState("");
+  const [ipAddress, setIpAddress] = useState("11.11.11.11");
+  const [userAgent, setUserAgent] = useState(navigator.userAgent);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await forgotPasswordService(email, ipAddress, userAgent);
+      if (response.status === 200) {
+        setError(false);
+        setSuccess(true);
+        setMessage(response.data["message"]);
+        setEmail("");
+      }
+    } catch (err) {
+      setMessage(err.response.data["detail"]);
+      setSuccess(false);
+      setError(true);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="mx-auto p-8 md:flex md:space-x-20">
@@ -22,12 +54,40 @@ const ForgotPassword = () => {
         </div>
 
         <div className="w-full md:w-1/2 font-body">
-          <FormHeader
-            title="Forgot password to your password"
-            info="Use your email to reset your passit account password."
-          />
-          <EmailInput />
-          <FormButton title="Send email" />
+          <form action="" onSubmit={(e) => handleSubmit(e)}>
+            <h3 className="text-2xl font-bold mb-4 font-body">
+              Forgot password to your password
+            </h3>
+            <p
+              className={`mb-5 font-body text-sm ${
+                error ? "text-red-500" : ""
+              } ${success ? "text-green-500" : ""}`}
+            >
+              {message}
+            </p>
+            <div className="mb-4">
+              <label
+                htmlFor="email"
+                className="block text-sm font-semibold mb-2"
+              >
+                Email
+              </label>
+              <div className="relative">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary"
+                  placeholder="Enter your email"
+                  required
+                />
+                <FaEnvelope className="absolute right-7 top-1/2 transform -translate-y-1/2 text-slate-500" />
+              </div>
+            </div>
+            <FormButton title="Send email" />
+          </form>
           <p className="mt-10 text-gray-600 text-sm">
             Create Account?{"  "}
             <Link to="/signup" className="text-blue font-semibold">

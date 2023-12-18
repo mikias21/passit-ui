@@ -23,7 +23,7 @@ function App() {
           <Route path="/dashboard" Component={Dashboard} />
           <Route path="/signin" Component={SigninPage} />
           <Route path="/signup" Component={SignupPage} />
-          <Route path="/reset" Component={ResetPassword} />
+          <Route path="/reset/:token" Component={ResetPassword} />
           <Route path="/forgot" Component={ForgotPassword} />
           <Route path="/verify" Component={VerifyAccount} />
           <Route path="/activate/:token" Component={ActivateAccount} />
