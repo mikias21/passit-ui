@@ -1,12 +1,47 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Components
-import FormHeader from "../../components/formComponents/FormHeader";
-import EmailInput from "../../components/formComponents/EmailInput";
-import PasswordInput from "../../components/formComponents/PasswordInput";
 import FormButton from "../../components/formComponents/FormButton";
 
+// Service
+import signUp from "../../services/signupService";
+
+// Icons
+import { FaEnvelope } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
+
 const SignupPage = () => {
+  const [message, setMessage] = useState(
+    "Create your account using your email and password."
+  );
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [ipAddress, setIpAddress] = useState("11.11.11.11");
+  const [userAgent, setUserAgent] = useState(navigator.userAgent);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await signUp(email, password, ipAddress, userAgent);
+      if (response.status === 201) {
+        setError(false);
+        setMessage(response.data["message"]);
+        setSuccess(true);
+        setEmail("");
+        setPassword("");
+      }
+    } catch (err) {
+      setMessage(err.response.data["detail"]);
+      setSuccess(false);
+      setError(true);
+      setPassword("");
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="mx-auto p-8 md:flex md:space-x-20">
@@ -23,13 +58,61 @@ const SignupPage = () => {
         </div>
 
         <div className="w-full md:w-1/2 font-body">
-          <FormHeader
-            title="Sign Up to passit"
-            info="Create your account using your email and password."
-          />
-          <EmailInput />
-          <PasswordInput label="Password" placeholder="Your password" />
-          <FormButton title="Create an account" />
+          <form action="" onSubmit={(e) => handleSubmit(e)}>
+            <h3 className="text-2xl font-bold mb-4 font-body">
+              Sign Up to passit
+            </h3>
+            <p
+              className={`mb-5 font-body text-sm ${
+                error ? "text-red-500" : ""
+              } ${success ? "text-green-500" : ""}`}
+            >
+              {message}
+            </p>
+            <div className="mb-4">
+              <label
+                htmlFor="email"
+                className="block text-sm font-semibold mb-2"
+              >
+                Email
+              </label>
+              <div className="relative">
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary"
+                  placeholder="Enter your email"
+                  required
+                />
+                <FaEnvelope className="absolute right-7 top-1/2 transform -translate-y-1/2 text-slate-500" />
+              </div>
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="password"
+                className="block text-sm font-semibold mb-2"
+              >
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary"
+                  placeholder="Your password"
+                  required
+                />
+                <FaLock className="absolute right-7 top-1/2 transform -translate-y-1/2 text-slate-500" />
+              </div>
+            </div>
+            <FormButton title="Create an account" />
+          </form>
           <p className="mt-10 text-gray-600 text-sm">
             Already have an account?{"  "}
             <Link to="/signin" className="text-blue font-semibold">
