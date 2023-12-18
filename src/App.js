@@ -26,7 +26,7 @@ function App() {
           <Route path="/reset" Component={ResetPassword} />
           <Route path="/forgot" Component={ForgotPassword} />
           <Route path="/verify" Component={VerifyAccount} />
-          <Route path="/activate" Component={ActivateAccount} />
+          <Route path="/activate/:token" Component={ActivateAccount} />
           <Route path="/signout" Component={Signout} />
         </Routes>
       </Router>
