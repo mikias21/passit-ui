@@ -25,7 +25,7 @@ function App() {
           <Route path="/signup" Component={SignupPage} />
           <Route path="/reset/:token" Component={ResetPassword} />
           <Route path="/forgot" Component={ForgotPassword} />
-          <Route path="/verify" Component={VerifyAccount} />
+          <Route path="/verify/:token" Component={VerifyAccount} />
           <Route path="/activate/:token" Component={ActivateAccount} />
           <Route path="/signout" Component={Signout} />
         </Routes>

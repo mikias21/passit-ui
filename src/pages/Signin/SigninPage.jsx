@@ -26,8 +26,12 @@ const SigninPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [ipAddress, setIpAddress] = useState("11.11.11.11");
+  const [ipAddress, setIpAddress] = useState("11.11.11.12");
   const [userAgent, setUserAgent] = useState(navigator.userAgent);
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState(
+    "Use your email and password to log in."
+  );
 
   const { isAuthenticated } = useAuth();
 
@@ -39,9 +43,12 @@ const SigninPage = () => {
     e.preventDefault();
     try {
       const userData = await signIn(email, password, ipAddress, userAgent);
+      setError(false);
       dispatch(setToken(userData));
-    } catch (error) {
-      throw error;
+    } catch (err) {
+      setError(true);
+      setPassword("");
+      setMessage(err.response.data["detail"]);
     }
   };
 
@@ -63,10 +70,16 @@ const SigninPage = () => {
 
         <div className="w-full md:w-1/2 font-body">
           <form action="" onSubmit={(e) => handleSubmit(e)}>
-            <FormHeader
-              title="Sign in to your passit account"
-              info="Use your email and password to log in."
-            />
+            <h3 className="text-2xl font-bold mb-4 font-body">
+              Sign in to your passit account
+            </h3>
+            <p
+              className={`mb-5 font-body text-sm ${
+                error ? "text-red-500" : ""
+              }`}
+            >
+              {message}
+            </p>
             <div className="mb-4">
               <label
                 htmlFor="email"
