@@ -39,16 +39,21 @@ const VerifyAccount = () => {
         ipAddress,
         userAgent
       );
-      if (response.status === 200) {
+      console.log(response);
+      if (response.data?.status === 200) {
         setError(false);
-        dispatch(setToken(response.data));
+        const userData = {
+          access_token: response.data?.access_token,
+          token_type: response.data?.token_type,
+        };
+        dispatch(setToken(userData));
         setRedirect(true);
+      } else {
+        setSuccess(false);
+        setError(true);
+        setMessage(response.data?.message);
       }
-    } catch (err) {
-      setSuccess(false);
-      setError(true);
-      setMessage(err.response.data["detail"]);
-    }
+    } catch (err) {}
   };
 
   return (

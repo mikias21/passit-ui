@@ -27,18 +27,20 @@ const SignupPage = () => {
 
     try {
       const response = await signUp(email, password, ipAddress, userAgent);
-      if (response.status === 201) {
+      if (response.data?.status !== 201) {
+        setMessage(response.data?.message);
+        setSuccess(false);
+        setError(true);
+        setPassword("");
+      } else {
         setError(false);
-        setMessage(response.data["message"]);
+        setMessage(response.data?.message);
         setSuccess(true);
         setEmail("");
         setPassword("");
       }
     } catch (err) {
-      setMessage(err.response.data["detail"]);
-      setSuccess(false);
-      setError(true);
-      setPassword("");
+      console.log(err);
     }
   };
 

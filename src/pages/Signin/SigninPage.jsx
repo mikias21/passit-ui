@@ -43,13 +43,15 @@ const SigninPage = () => {
     e.preventDefault();
     try {
       const userData = await signIn(email, password, ipAddress, userAgent);
-      setError(false);
-      dispatch(setToken(userData));
-    } catch (err) {
-      setError(true);
-      setPassword("");
-      setMessage(err.response.data["detail"]);
-    }
+      if (userData?.status !== 200) {
+        setError(true);
+        setPassword("");
+        setMessage(userData?.message);
+      } else if (userData?.status === 200) {
+        setError(false);
+        dispatch(setToken(userData));
+      }
+    } catch (err) {}
   };
 
   return (

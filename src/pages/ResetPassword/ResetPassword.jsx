@@ -34,24 +34,20 @@ const ResetPassword = () => {
         ipAddress,
         userAgent
       );
-      console.log(response);
-      if (response.status === 201) {
+      if (response.data?.status === 201) {
         setError(false);
         setSuccess(true);
         setPassword("");
         setConfirmPassword("");
-        setMessage(response.data["msg"]);
-      }
-    } catch (err) {
-      if (err.response.data["msg"]) {
+        setMessage(response.data?.message);
+      } else {
         setSuccess(false);
         setError(true);
-        setMessage(err.response.data["msg"]);
+        setMessage(response.data?.message);
         setPassword("");
         setConfirmPassword("");
       }
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (

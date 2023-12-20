@@ -21,17 +21,17 @@ const ActivateAccount = () => {
     e.preventDefault();
     try {
       const response = await activateAccount(token["token"], otp);
-      if (response.status === 200) {
+      if (response.data?.status === 200) {
         setError(false);
         setSuccess(true);
-        setMessage(response.data["msg"]);
+        setMessage(response.data?.message);
         setOtp("");
+      } else {
+        setMessage(response.data?.message);
+        setSuccess(false);
+        setError(true);
       }
-    } catch (err) {
-      setMessage(err.response.data.msg);
-      setSuccess(false);
-      setError(true);
-    }
+    } catch (err) {}
   };
 
   return (

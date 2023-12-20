@@ -25,17 +25,17 @@ const ForgotPassword = () => {
 
     try {
       const response = await forgotPasswordService(email, ipAddress, userAgent);
-      if (response.status === 200) {
+      if (response.data?.status === 200) {
         setError(false);
         setSuccess(true);
         setMessage(response.data["message"]);
         setEmail("");
+      } else {
+        setMessage(response.data?.message);
+        setSuccess(false);
+        setError(true);
       }
-    } catch (err) {
-      setMessage(err.response.data["detail"]);
-      setSuccess(false);
-      setError(true);
-    }
+    } catch (err) {}
   };
 
   return (
