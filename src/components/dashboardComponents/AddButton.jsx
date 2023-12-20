@@ -23,7 +23,7 @@ const AddButton = () => {
       {isModalOpen && (
         <div className="fixed -top-64 right-0 bottom-0 left-0 z-50 flex items-center justify-center backdrop-blur-sm">
           <div className="bg-white p-4 md:p-5 max-w-md w-full shadow-lg border border-slate-100">
-            <h1>Hello world</h1>
+            <h1 className="text-base font-popins">Add a new password</h1>
 
             <div className="flex items-center justify-end mt-4">
               <button
