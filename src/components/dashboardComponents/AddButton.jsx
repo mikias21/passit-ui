@@ -1,6 +1,9 @@
 import { IoMdAdd } from "react-icons/io";
 import { useState } from "react";
 
+// Icons
+import { IoIosCloseCircleOutline } from "react-icons/io";
+
 const AddButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -21,28 +24,92 @@ const AddButton = () => {
       </button>
 
       {isModalOpen && (
-        <div className="fixed -top-64 right-0 bottom-0 left-0 z-50 flex items-center justify-center backdrop-blur-sm">
-          <div className="bg-white p-4 md:p-5 max-w-md w-full shadow-lg border border-slate-100">
-            <h1 className="text-base font-popins">Add a new password</h1>
-
-            <div className="flex items-center justify-end mt-4">
-              <button
-                data-modal-hide="static-modal"
-                type="button"
-                className="text-white bg-blue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        <div className="fixed -top-5 right-0 bottom-0 left-0 z-50 flex items-center justify-center backdrop-blur">
+          <div className="bg-white p-4 md:p-5 max-w-md w-full shadow-lg border border-slate-100 mb-10">
+            <div className="flex items-start justify-between">
+              <h1 className="text-2xl font-popins font-extralight">
+                Add a new password{" "}
+              </h1>
+              <IoIosCloseCircleOutline
+                className="text-3xl text-slate-400 cursor-pointer"
                 onClick={toggleModal}
-              >
-                I accept
-              </button>
-              <button
-                data-modal-hide="static-modal"
-                type="button"
-                className="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
-                onClick={toggleModal}
-              >
-                Decline
-              </button>
+              />
             </div>
+            <hr className="mt-2 w-5/12 border-slate-200" />
+            <form action="" className="mt-4">
+              <div>
+                <label
+                  htmlFor="label"
+                  className="text-sm font-semibold font-popins"
+                >
+                  Password Label
+                </label>
+                <input
+                  type="text"
+                  id="label"
+                  className="w-full border p-2 mt-2 rounded border-slate-300 text-sm focus:outline-none focus:border-blue font-open"
+                />
+              </div>
+              <div className="mt-3">
+                <label
+                  htmlFor="password"
+                  className="text-sm font-semibold font-open"
+                >
+                  Password
+                </label>
+                <input
+                  type="text"
+                  id="password"
+                  className="w-full border p-2 mt-2 rounded border-slate-300 text-sm font-open focus:outline-none focus:border-blue"
+                />
+              </div>
+              <div className="mt-3">
+                <label
+                  htmlFor="category"
+                  className="text-sm font-semibold font-open"
+                >
+                  Category
+                </label>
+                <input
+                  type="text"
+                  id="category"
+                  className="w-full border p-2 mt-2 rounded border-slate-300 text-sm font-open focus:outline-none focus:border-blue"
+                />
+              </div>
+              <div className="mt-3">
+                <label
+                  htmlFor="url"
+                  className="text-sm font-semibold font-open"
+                >
+                  URL / Domain name
+                </label>
+                <input
+                  type="text"
+                  id="url"
+                  className="w-full border p-2 mt-2 rounded border-slate-300 text-sm font-open focus:outline-none focus:border-blue"
+                />
+              </div>
+              <div className="mt-3">
+                <label
+                  htmlFor="description"
+                  className="text-sm font-semibold font-open"
+                >
+                  Description
+                </label>
+                <textarea
+                  name="description"
+                  id="description"
+                  cols="30"
+                  rows="5"
+                  className="w-full border p-2 mt-2 rounded border-slate-300 text-sm font-open focus:outline-none focus:border-blue"
+                ></textarea>
+              </div>
+              <div className="mt-4 mb-5">
+                <button className="w-5/12 bg-blue text-white p-2 text-sm rounded hover:bg-opacity-90 focus:outline-none focus:shadow-outline font-popins">
+                  Add password
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

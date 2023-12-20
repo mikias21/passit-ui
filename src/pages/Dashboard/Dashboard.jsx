@@ -17,28 +17,38 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className=" bg-slate-50">
-        <div className="flex h-screen overflow-hidden">
-          <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-          <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-            <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-            <main>
-              <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-                  <CardOne />
-                  <CardOne />
-                  <CardOne />
-                  <CardOne />
+      {isAuthenticated ? (
+        <div className=" bg-slate-50">
+          <div className="flex h-screen overflow-hidden">
+            <Sidebar
+              sidebarOpen={sidebarOpen}
+              setSidebarOpen={setSidebarOpen}
+            />
+            <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+              <Header
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
+              />
+              <main>
+                <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+                    <CardOne />
+                    <CardOne />
+                    <CardOne />
+                    <CardOne />
+                  </div>
+                  <div className="col-span-12 xl:col-span-8 mt-8">
+                    <TableOne />
+                  </div>
                 </div>
-                <div className="col-span-12 xl:col-span-8 mt-8">
-                  <TableOne />
-                </div>
-              </div>
-              <AddButton />
-            </main>
+                <AddButton />
+              </main>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <Navigate replace to="/signin" />
+      )}
     </>
   );
 };
