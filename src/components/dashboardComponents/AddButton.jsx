@@ -40,59 +40,64 @@ const AddButton = () => {
               <div>
                 <label
                   htmlFor="label"
-                  className="text-sm font-semibold font-popins"
+                  className="text-xs font-semibold font-popins"
                 >
                   Password Label
+                  <span className="text-red-500 text-sm">*</span>
                 </label>
                 <input
                   type="text"
                   id="label"
-                  className="w-full border p-2 mt-2 rounded border-slate-300 text-sm focus:outline-none focus:border-blue font-open"
+                  placeholder="Name your password something you can remember"
+                  className="w-full border p-2 mt-2 rounded-sm border-slate-300 text-xs focus:outline-none focus:border-blue font-open"
                 />
               </div>
               <div className="mt-3">
                 <label
                   htmlFor="password"
-                  className="text-sm font-semibold font-open"
+                  className="text-xs font-semibold font-popins"
                 >
-                  Password
+                  Password<span className="text-red-500 text-sm">*</span>
                 </label>
                 <input
                   type="text"
                   id="password"
-                  className="w-full border p-2 mt-2 rounded border-slate-300 text-sm font-open focus:outline-none focus:border-blue"
+                  placeholder="Password you want to save"
+                  className="w-full border p-2 mt-2 text-xs rounded-sm border-slate-300 font-open focus:outline-none focus:border-blue"
                 />
               </div>
               <div className="mt-3">
                 <label
                   htmlFor="category"
-                  className="text-sm font-semibold font-open"
+                  className="text-xs font-semibold font-popins"
                 >
                   Category
                 </label>
                 <input
                   type="text"
                   id="category"
-                  className="w-full border p-2 mt-2 rounded border-slate-300 text-sm font-open focus:outline-none focus:border-blue"
+                  placeholder="default category is main"
+                  className="w-full border p-2 mt-2 rounded-sm text-xs border-slate-300 font-open focus:outline-none focus:border-blue"
                 />
               </div>
               <div className="mt-3">
                 <label
                   htmlFor="url"
-                  className="text-sm font-semibold font-open"
+                  className="text-xs font-semibold font-popins"
                 >
-                  URL / Domain name
+                  URL
                 </label>
                 <input
                   type="text"
                   id="url"
-                  className="w-full border p-2 mt-2 rounded border-slate-300 text-sm font-open focus:outline-none focus:border-blue"
+                  placeholder="Url or domain name where you use this password"
+                  className="w-full border p-2 mt-2 rounded-sm border-slate-300 text-xs font-open focus:outline-none focus:border-blue"
                 />
               </div>
               <div className="mt-3">
                 <label
                   htmlFor="description"
-                  className="text-sm font-semibold font-open"
+                  className="text-xs font-semibold font-popins"
                 >
                   Description
                 </label>
@@ -101,7 +106,8 @@ const AddButton = () => {
                   id="description"
                   cols="30"
                   rows="5"
-                  className="w-full border p-2 mt-2 rounded border-slate-300 text-sm font-open focus:outline-none focus:border-blue"
+                  placeholder="If you want to note down something, feel free"
+                  className="w-full border p-2 mt-2 rounded-sm border-slate-300 text-xs font-open focus:outline-none focus:border-blue resize-none"
                 ></textarea>
               </div>
               <div className="mt-4 mb-5">

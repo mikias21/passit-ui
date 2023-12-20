@@ -42,14 +42,18 @@ const SigninPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userData = await signIn(email, password, ipAddress, userAgent);
-      if (userData?.status !== 200) {
+      const response = await signIn(email, password, ipAddress, userAgent);
+      if (response.data?.status === 200) {
+        setError(false);
+        const userData = {
+          access_token: response.data?.access_token,
+          token_type: response.data?.token_type,
+        };
+        dispatch(setToken(userData));
+      } else {
         setError(true);
         setPassword("");
-        setMessage(userData?.message);
-      } else if (userData?.status === 200) {
-        setError(false);
-        dispatch(setToken(userData));
+        setMessage(response.data?.message);
       }
     } catch (err) {}
   };

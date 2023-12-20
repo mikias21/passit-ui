@@ -14,7 +14,7 @@ const signIn = async (email, password, ip_address, user_agent) => {
       { email, password, ip_address, user_agent },
       customHeader
     );
-    return response.data;
+    return response;
   } catch (error) {
     throw error;
   }
