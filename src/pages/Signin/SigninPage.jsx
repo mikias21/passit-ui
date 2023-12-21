@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 // Components
-import FormHeader from "../../components/formComponents/FormHeader";
 import FormButton from "../../components/formComponents/FormButton";
 import ThemeSwitcher from "../../components/utilComponents/ThemeSwticher";
 
@@ -14,6 +13,7 @@ import { FaLock } from "react-icons/fa";
 
 // Service
 import signIn from "../../services/signinService";
+import getIpAddress from "../../services/getIpAddress";
 
 // Slice
 import { setToken } from "../../slices/authSlice";
@@ -35,12 +35,23 @@ const SigninPage = () => {
 
   const { isAuthenticated } = useAuth();
 
+  useEffect(() => {
+    getIpAddress()
+      .then((res) => {
+        if (res.status === 200) {
+          setIpAddress(res.data.ip);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   if (isAuthenticated) {
     return <Navigate to="/dashboard" />;
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await signIn(email, password, ipAddress, userAgent);
       if (response.data?.status === 200) {

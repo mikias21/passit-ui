@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Components
@@ -6,6 +6,7 @@ import FormButton from "../../components/formComponents/FormButton";
 
 // Service
 import signUp from "../../services/signupService";
+import getIpAddress from "../../services/getIpAddress";
 
 // Icons
 import { FaEnvelope } from "react-icons/fa";
@@ -19,8 +20,18 @@ const SignupPage = () => {
   const [success, setSuccess] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [ipAddress, setIpAddress] = useState("11.11.11.11");
+  const [ipAddress, setIpAddress] = useState("");
   const [userAgent, setUserAgent] = useState(navigator.userAgent);
+
+  useEffect(() => {
+    getIpAddress()
+      .then((res) => {
+        if (res.status === 200) {
+          setIpAddress(res.data.ip);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -8,6 +8,7 @@ import { Navigate, redirect } from "react-router-dom";
 import FormButton from "../../components/formComponents/FormButton";
 
 // Services
+import getIpAddress from "../../services/getIpAddress";
 import verifyAccountService from "../../services/verifyAccountService";
 
 // User Slice
@@ -25,6 +26,16 @@ const VerifyAccount = () => {
   const [redirect, setRedirect] = useState(false);
   const token = useParams();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    getIpAddress()
+      .then((res) => {
+        if (res.status === 200) {
+          setIpAddress(res.data.ip);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   if (redirect) {
     return <Navigate to="/dashboard" />;

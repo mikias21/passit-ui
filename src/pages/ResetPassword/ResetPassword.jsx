@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
@@ -9,6 +9,7 @@ import { FaLock } from "react-icons/fa";
 import FormButton from "../../components/formComponents/FormButton";
 
 // Service
+import getIpAddress from "../../services/getIpAddress";
 import resetPasswordService from "../../services/resetPasswordService";
 
 const ResetPassword = () => {
@@ -22,6 +23,16 @@ const ResetPassword = () => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const token = useParams();
+
+  useEffect(() => {
+    getIpAddress()
+      .then((res) => {
+        if (res.status === 200) {
+          setIpAddress(res.data.ip);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

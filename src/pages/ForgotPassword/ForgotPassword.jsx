@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Icons
@@ -8,6 +8,7 @@ import { FaEnvelope } from "react-icons/fa";
 import FormButton from "../../components/formComponents/FormButton";
 
 // Service
+import getIpAddress from "../../services/getIpAddress";
 import forgotPasswordService from "../../services/forgotPasswordService";
 
 const ForgotPassword = () => {
@@ -19,6 +20,16 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [ipAddress, setIpAddress] = useState("11.11.11.11");
   const [userAgent, setUserAgent] = useState(navigator.userAgent);
+
+  useEffect(() => {
+    getIpAddress()
+      .then((res) => {
+        if (res.status === 200) {
+          setIpAddress(res.data.ip);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
