@@ -11,6 +11,9 @@ import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import VerifyAccount from "./pages/VerifyAccount/VerifyAccount";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ActivateAccount from "./pages/ActivateAccount/ActivateAccount";
+import Starred from "./pages/Dashboard/DashboardPages/Starred/Starred";
+import Important from "./pages/Dashboard/DashboardPages/Important/Important";
+import Deleted from "./pages/Dashboard/DashboardPages/Deleted/Deleted";
 
 import "./App.css";
 
@@ -21,6 +24,9 @@ function App() {
         <Routes>
           <Route path="/" Component={Landing} />
           <Route path="/dashboard" Component={Dashboard} />
+          <Route path="/starred" Component={Starred} />
+          <Route path="/important" Component={Important} />
+          <Route path="/deleted" Component={Deleted} />
           <Route path="/signin" Component={SigninPage} />
           <Route path="/signup" Component={SignupPage} />
           <Route path="/reset/:token" Component={ResetPassword} />

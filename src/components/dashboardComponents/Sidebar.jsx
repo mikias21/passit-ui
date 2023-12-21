@@ -99,7 +99,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   return (
                     <React.Fragment>
                       <Link
-                        to="#"
+                        to="/dashboard"
                         className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] font-popins ${
                           (pathname === "/" ||
                             pathname.includes("dashboard")) &&
@@ -116,7 +116,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
               <li>
                 <Link
-                  to="/calendar"
+                  to="/starred"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] ${
                     pathname.includes("calendar") &&
                     "bg-graydark dark:bg-meta-4"
@@ -128,7 +128,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               </li>
               <li>
                 <Link
-                  to="/calendar"
+                  to="/important"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] ${
                     pathname.includes("calendar") &&
                     "bg-graydark dark:bg-meta-4"
@@ -213,7 +213,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               </li>
               <li>
                 <Link
-                  to="/calendar"
+                  to="/deleted"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium duration-300 ease-in-out hover:bg-[#BFDBFE] ${
                     pathname.includes("calendar") &&
                     "bg-graydark dark:bg-meta-4"
