@@ -25,7 +25,7 @@ const AddButton = () => {
 
       {isModalOpen && (
         <div className="fixed -top-5 right-0 bottom-0 left-0 z-50 flex items-center justify-center backdrop-blur">
-          <div className="bg-white p-4 md:p-5 max-w-md w-full shadow-lg border border-slate-100 mb-10">
+          <div className="bg-white p-4 md:p-5 max-w-md w-full shadow-lg border border-slate-100 mb-10 dark:bg-[#111] dark:text-slate-200 dark:border-none">
             <div className="flex items-start justify-between">
               <h1 className="text-2xl font-popins font-extralight">
                 Add a new password{" "}
@@ -49,7 +49,7 @@ const AddButton = () => {
                   type="text"
                   id="label"
                   placeholder="Name your password something you can remember"
-                  className="w-full border p-2 mt-2 rounded-sm border-slate-300 text-xs focus:outline-none focus:border-blue font-open"
+                  className="w-full border p-2 mt-2 rounded-sm border-slate-300 text-xs focus:outline-none focus:border-blue font-open text-black dark:focus:border-none"
                 />
               </div>
               <div className="mt-3">
@@ -63,7 +63,7 @@ const AddButton = () => {
                   type="text"
                   id="password"
                   placeholder="Password you want to save"
-                  className="w-full border p-2 mt-2 text-xs rounded-sm border-slate-300 font-open focus:outline-none focus:border-blue"
+                  className="w-full border p-2 mt-2 text-xs rounded-sm border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none"
                 />
               </div>
               <div className="mt-3">
@@ -77,7 +77,7 @@ const AddButton = () => {
                   type="text"
                   id="category"
                   placeholder="default category is main"
-                  className="w-full border p-2 mt-2 rounded-sm text-xs border-slate-300 font-open focus:outline-none focus:border-blue"
+                  className="w-full border p-2 mt-2 rounded-sm text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none"
                 />
               </div>
               <div className="mt-3">
@@ -91,7 +91,7 @@ const AddButton = () => {
                   type="text"
                   id="url"
                   placeholder="Url or domain name where you use this password"
-                  className="w-full border p-2 mt-2 rounded-sm border-slate-300 text-xs font-open focus:outline-none focus:border-blue"
+                  className="w-full border p-2 mt-2 rounded-sm border-slate-300 text-xs font-open focus:outline-none focus:border-blue text-black dark:focus:border-none"
                 />
               </div>
               <div className="mt-3">
@@ -107,7 +107,7 @@ const AddButton = () => {
                   cols="30"
                   rows="5"
                   placeholder="If you want to note down something, feel free"
-                  className="w-full border p-2 mt-2 rounded-sm border-slate-300 text-xs font-open focus:outline-none focus:border-blue resize-none"
+                  className="w-full border p-2 mt-2 rounded-sm border-slate-300 text-xs font-open focus:outline-none focus:border-blue resize-none text-black dark:focus:border-none"
                 ></textarea>
               </div>
               <div className="mt-4 mb-5">

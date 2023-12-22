@@ -46,7 +46,7 @@ const DropdownUser = () => {
           <span className="block text-sm font-medium text-black dark:text-white">
             Thomas Anree
           </span>
-          <span className="block text-xs">UX Designer</span>
+          <span className="block text-xs dark:text-slate-200">UX Designer</span>
         </span>
 
         <div className="h-12 w-12">
@@ -80,15 +80,15 @@ const DropdownUser = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute right-0 mt-4 p-3 flex flex-col rounded-md bg-white shadow-2xl font-popins w-64 ${
+        className={`absolute right-0 mt-4 p-3 flex flex-col rounded-md bg-white shadow-2xl font-popins w-64 dark:bg-[#111] ${
           dropdownOpen === true ? "block" : "hidden"
         }`}
       >
-        <ul className="flex flex-col gap-3 border-b border-b-slate-200 border-stroke py-7.5 dark:border-strokedark">
+        <ul className="flex flex-col gap-3 border-b border-b-slate-200 border-stroke py-7.5 dark:border-strokedark dark:text-slate-200">
           <li>
             <Link
               to="/profile"
-              className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-[#BFDBFE] rounded-sm"
+              className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-[#BFDBFE] rounded-sm dark:hover:bg-slate-500"
             >
               <FaUserAlt className="text-lg" />
               Profile
@@ -97,7 +97,7 @@ const DropdownUser = () => {
           <li>
             <Link
               to="/settings"
-              className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary mb-4 w-full hover:bg-[#BFDBFE] rounded-sm"
+              className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary mb-4 w-full hover:bg-[#BFDBFE] rounded-sm dark:hover:bg-slate-500"
             >
               <IoSettingsSharp className="text-lg" />
               Settings
@@ -106,7 +106,7 @@ const DropdownUser = () => {
         </ul>
         <Link
           to="/signout"
-          className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-red-100 rounded-sm"
+          className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-red-100 rounded-sm dark:text-slate-200 dark:hover:bg-slate-500"
         >
           <IoLogOutSharp className="text-lg" />
           Log Out

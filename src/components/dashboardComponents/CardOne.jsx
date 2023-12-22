@@ -1,6 +1,6 @@
 const CardOne = () => {
   return (
-    <div className="rounded-sm bg-white p-4 py-6 px-7.5 shadow-lg font-popins">
+    <div className="rounded-sm bg-white p-4 py-6 px-7.5 shadow-lg font-popins dark:bg-[#111] dark:text-slate-200">
       <div className="flex h-11.5 w-11.5 rounded-full bg-meta-2 dark:bg-meta-4">
         <p>hello</p>
       </div>

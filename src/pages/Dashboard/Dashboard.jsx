@@ -14,11 +14,12 @@ import useAuth from "../../hooks/useAuth";
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { isAuthenticated } = useAuth();
+  // const isAuthenticated = true;
 
   return (
     <>
       {isAuthenticated ? (
-        <div className=" bg-slate-50">
+        <div className=" bg-slate-50 dark:bg-black">
           <div className="flex h-screen overflow-hidden">
             <Sidebar
               sidebarOpen={sidebarOpen}

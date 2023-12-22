@@ -6,7 +6,7 @@ import DropdownUser from "./DropdownUser";
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   return (
-    <header className="sticky top-0 z-999 flex w-12/12 bg-white shadow-md h-16 mx-5 mt-5 rounded-lg font-open text-sm">
+    <header className="sticky top-0 z-999 flex w-12/12 bg-white shadow-md h-16 mx-5 mt-5 rounded-lg font-open text-sm dark:bg-[#111]">
       <div className="flex flex-grow items-center justify-between py-4 px-4 shadow-2 md:px-6 2xl:px-11">
         <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
           <button
@@ -15,9 +15,9 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
               e.stopPropagation();
               setSidebarOpen(!sidebarOpen);
             }}
-            className="z-99999 block bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden"
+            className="z-99999 block bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden dark:bg-[#111]"
           >
-            <GiHamburgerMenu />
+            <GiHamburgerMenu className="dark:text-slate-200" />
           </button>
         </div>
 
@@ -25,12 +25,12 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           <form action="" method="POST">
             <div className="relative">
               <button className="absolute top-1/2 left-0 -translate-y-1/2">
-                <CiSearch className="text-lg" />
+                <CiSearch className="text-lg dark:text-slate-200" />
               </button>
               <input
                 type="text"
                 placeholder="Type to search..."
-                className="w-full bg-transparent pr-4 pl-9 focus:outline-none h-12"
+                className="w-full bg-transparent pr-4 pl-9 focus:outline-none h-12 dark:text-slate-200"
               />
             </div>
           </form>

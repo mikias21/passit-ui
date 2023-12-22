@@ -12,6 +12,7 @@ import { IoMdAdd } from "react-icons/io";
 
 // Components
 import SidebarLinkGroup from "./SidebarLinkGroup";
+import ThemeSwitcher from "../utilComponents/ThemeSwticher";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
@@ -63,7 +64,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute z-50 left-0 top-0 flex h-screen w-72.5 flex-col overflow-y-hidden bg-white duration-300 font-open ease-linear lg:static lg:translate-x-0 shadow-xl ${
+      className={`absolute z-50 left-0 top-0 flex h-screen w-72.5 flex-col overflow-y-hidden bg-white duration-300 font-open ease-linear lg:static lg:translate-x-0 shadow-xl dark:bg-[#111] ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -86,7 +87,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear text-slate-700 text-sm mt-7 lg:-mt-7 font-popins">
         <nav className="-mt-5 py-4 px-4 lg:mt-9 lg:px-6">
           <div>
-            <h3 className="mb-2 ml-4 font-semibold">Menu</h3>
+            <h3 className="mb-2 ml-4 font-semibold dark:text-slate-400">
+              Menu
+            </h3>
             <hr className="mb-2 border border-slate-200 w-24 ml-4" />
 
             <ul className="mb-6 flex flex-col gap-1.5">
@@ -100,10 +103,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     <React.Fragment>
                       <Link
                         to="/dashboard"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] font-popins ${
-                          (pathname === "/" ||
-                            pathname.includes("dashboard")) &&
-                          "bg-graydark dark:bg-meta-4"
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium duration-300 ease-in-out hover:bg-[#BFDBFE] font-popins dark:text-slate-200 dark:hover:bg-slate-500 ${
+                          pathname === "/" || pathname.includes("dashboard")
                         }`}
                       >
                         <MdDashboard />
@@ -117,7 +118,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <li>
                 <Link
                   to="/starred"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] dark:text-slate-200 dark:hover:bg-slate-500 ${
                     pathname.includes("calendar") &&
                     "bg-graydark dark:bg-meta-4"
                   }`}
@@ -129,7 +130,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <li>
                 <Link
                   to="/important"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] dark:text-slate-200 dark:hover:bg-slate-500 ${
                     pathname.includes("calendar") &&
                     "bg-graydark dark:bg-meta-4"
                   }`}
@@ -149,7 +150,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                       <React.Fragment>
                         <Link
                           to="#"
-                          className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                          className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:text-slate-200 dark:hover:bg-slate-500 ${
                             (pathname === "/ui" || pathname.includes("ui")) &&
                             "bg-graydark dark:bg-meta-4"
                           }`}
@@ -190,7 +191,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                             <li className="mb-2">
                               <Link
                                 to="/ui/alerts"
-                                className=" flex group relative items-center gap-1 rounded-md duration-300 ease-in-out text-xs font-bold"
+                                className=" flex group relative items-center gap-1 rounded-md duration-300 ease-in-out text-xs font-bold dark:text-slate-200 dark:hover:bg-slate-500"
                               >
                                 <IoMdAdd className="text-base" />
                                 Add
@@ -199,7 +200,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                             <li className="mb-2 pl-1">
                               <Link
                                 to="/ui/alerts"
-                                className="group relative items-center gap-2.5 rounded-md duration-300 ease-in-out"
+                                className="group relative items-center gap-2.5 rounded-md duration-300 ease-in-out dark:text-slate-200 dark:hover:bg-slate-500"
                               >
                                 Main
                               </Link>
@@ -214,7 +215,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <li>
                 <Link
                   to="/deleted"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium duration-300 ease-in-out hover:bg-[#BFDBFE] ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium duration-300 ease-in-out hover:bg-[#BFDBFE] dark:text-slate-200 dark:hover:bg-slate-500 ${
                     pathname.includes("calendar") &&
                     "bg-graydark dark:bg-meta-4"
                   }`}
@@ -227,14 +228,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           </div>
 
           <div>
-            <h3 className="mb-2 ml-4 text-xs font-semibold">Settings</h3>
+            <h3 className="mb-2 ml-4 text-xs font-semibold dark:text-slate-400">
+              Settings
+            </h3>
             <hr className="mb-2 border border-slate-200 w-24 ml-4" />
 
             <ul className="mb-6 flex flex-col gap-1.5">
               <li>
                 <Link
                   to="/chart"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] dark:text-slate-200 dark:hover:bg-slate-500 ${
                     pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
                   }`}
                 >
@@ -245,7 +248,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <li>
                 <Link
                   to="/chart"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] dark:text-slate-200 dark:hover:bg-slate-500 ${
                     pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
                   }`}
                 >
@@ -256,7 +259,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <li>
                 <Link
                   to="/signout"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] dark:text-slate-200 dark:hover:bg-slate-500 ${
                     pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
                   }`}
                 >
@@ -265,6 +268,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 </Link>
               </li>
             </ul>
+          </div>
+          <div>
+            <ThemeSwitcher />
           </div>
         </nav>
       </div>

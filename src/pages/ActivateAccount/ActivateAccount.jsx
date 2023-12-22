@@ -6,6 +6,9 @@ import ClipLoader from "react-spinners/ClipLoader";
 // Service
 import activateAccount from "../../services/activateService";
 
+// Components
+import ThemeSwitcher from "../../components/utilComponents/ThemeSwticher";
+
 const ActivateAccount = () => {
   const [otp, setOtp] = useState("");
   const token = useParams();
@@ -42,21 +45,22 @@ const ActivateAccount = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="mx-auto p-8 md:flex md:space-x-20">
+    <div className="min-h-screen flex items-center justify-center dark:bg-black">
+      <ThemeSwitcher />
+      <div className="mx-auto p-8 md:flex md:space-x-20 dark:bg-gray-800">
         <div className="hidden md:block md:w-1/2 md:pr-8">
           <div className="mb-8">
-            <h2 className="text-3xl font-extrabold text-secondary mb-4 font-body text-center">
+            <h2 className="text-3xl font-extrabold text-secondary mb-4 font-body text-center dark:text-white">
               Welcome to <span className="text-blue">passit</span>
             </h2>
-            <p className="text-gray-600 font-body text-center">
+            <p className="text-gray-600 font-body text-center dark:text-white">
               store passwords securely and access whenever needed.
             </p>
           </div>
           <img src="/images/7070629_3293466.svg" alt="" className="w-full" />
         </div>
 
-        <div className="w-full md:w-1/2 font-body">
+        <div className="w-full md:w-1/2 font-body dark:text-white dark:bg-[#111] p-10 dark:rounded-sm dark:shadow-sm">
           <form action="" onSubmit={(e) => handleSubmit(e)}>
             <h3 className="text-2xl font-bold mb-4 font-body">
               Activate your passit account.
@@ -76,7 +80,7 @@ const ActivateAccount = () => {
                 <input
                   id="pin"
                   type="text"
-                  className="w-full border border-slate-300 p-2 rounded focus:outline-none focus:border-secondary"
+                  className="w-full border border-slate-300 p-2 rounded focus:outline-none focus:border-secondary dark:bg-slate-200 text-black"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                 />

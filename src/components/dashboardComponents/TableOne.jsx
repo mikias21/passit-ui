@@ -2,7 +2,7 @@ import { LuView } from "react-icons/lu";
 
 const TableOne = () => {
   return (
-    <div className="rounded-sm bg-white px-5 pt-6 pb-2.5 shadow-lg sm:px-7.5 xl:pb-1 font-popins">
+    <div className="rounded-sm bg-white px-5 pt-6 pb-2.5 shadow-lg sm:px-7.5 xl:pb-1 font-popins dark:bg-[#111] dark:text-slate-200">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
         Recently used or added
       </h4>
