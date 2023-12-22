@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-// Components
-import FormButton from "../../components/formComponents/FormButton";
-
 // Service
 import signUp from "../../services/signupService";
 import getIpAddress from "../../services/getIpAddress";
 
 // Icons
-import { FaEnvelope } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const SignupPage = () => {
   const [message, setMessage] = useState(
@@ -21,7 +19,9 @@ const SignupPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [ipAddress, setIpAddress] = useState("");
-  const [userAgent, setUserAgent] = useState(navigator.userAgent);
+  const [userAgent] = useState(navigator.userAgent);
+  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     getIpAddress()
@@ -35,15 +35,21 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setDisabled(true);
 
     try {
       const response = await signUp(email, password, ipAddress, userAgent);
       if (response.data?.status !== 201) {
+        setLoading(false);
+        setDisabled(false);
         setMessage(response.data?.message);
         setSuccess(false);
         setError(true);
         setPassword("");
       } else {
+        setLoading(false);
+        setDisabled(false);
         setError(false);
         setMessage(response.data?.message);
         setSuccess(true);
@@ -124,7 +130,26 @@ const SignupPage = () => {
                 <FaLock className="absolute right-7 top-1/2 transform -translate-y-1/2 text-slate-500" />
               </div>
             </div>
-            <FormButton title="Create an account" />
+            <button
+              className={`w-full text-white p-3 rounded focus:outline-none focus:shadow-outline cursor-pointer ${
+                disabled
+                  ? "bg-lightblue bg-opacity-30"
+                  : "bg-blue hover:bg-opacity-90"
+              }`}
+              disabled={disabled}
+            >
+              {loading ? (
+                <ClipLoader
+                  color="#ffffff"
+                  loading={loading}
+                  size={15}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "Create an account"
+              )}
+            </button>
           </form>
           <p className="mt-10 text-gray-600 text-sm">
             Already have an account?{"  "}

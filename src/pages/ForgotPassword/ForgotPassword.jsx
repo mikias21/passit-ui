@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 
 // Icons
 import { FaEnvelope } from "react-icons/fa";
-
-// Components
-import FormButton from "../../components/formComponents/FormButton";
+import ClipLoader from "react-spinners/ClipLoader";
 
 // Service
 import getIpAddress from "../../services/getIpAddress";
@@ -19,7 +17,9 @@ const ForgotPassword = () => {
   const [success, setSuccess] = useState(false);
   const [email, setEmail] = useState("");
   const [ipAddress, setIpAddress] = useState("11.11.11.11");
-  const [userAgent, setUserAgent] = useState(navigator.userAgent);
+  const [userAgent] = useState(navigator.userAgent);
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getIpAddress()
@@ -33,15 +33,21 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setDisabled(true);
+    setLoading(true);
 
     try {
       const response = await forgotPasswordService(email, ipAddress, userAgent);
       if (response.data?.status === 200) {
+        setDisabled(false);
+        setLoading(false);
         setError(false);
         setSuccess(true);
         setMessage(response.data["message"]);
         setEmail("");
       } else {
+        setDisabled(false);
+        setLoading(false);
         setMessage(response.data?.message);
         setSuccess(false);
         setError(true);
@@ -97,7 +103,26 @@ const ForgotPassword = () => {
                 <FaEnvelope className="absolute right-7 top-1/2 transform -translate-y-1/2 text-slate-500" />
               </div>
             </div>
-            <FormButton title="Send email" />
+            <button
+              className={`w-full text-white p-3 rounded focus:outline-none focus:shadow-outline cursor-pointer ${
+                disabled
+                  ? "bg-lightblue bg-opacity-30"
+                  : "bg-blue hover:bg-opacity-90"
+              }`}
+              disabled={disabled}
+            >
+              {loading ? (
+                <ClipLoader
+                  color="#ffffff"
+                  loading={loading}
+                  size={15}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "Send email"
+              )}
+            </button>
           </form>
           <p className="mt-10 text-gray-600 text-sm">
             Create Account?{"  "}

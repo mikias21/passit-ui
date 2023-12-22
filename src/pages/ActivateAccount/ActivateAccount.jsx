@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-
-// Components
-import FormButton from "../../components/formComponents/FormButton";
+import ClipLoader from "react-spinners/ClipLoader";
 
 // Service
 import activateAccount from "../../services/activateService";
@@ -16,18 +14,27 @@ const ActivateAccount = () => {
   );
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setDisabled(true);
+    setLoading(true);
+
     try {
       const response = await activateAccount(token["token"], otp);
       if (response.data?.status === 200) {
+        setDisabled(false);
+        setLoading(false);
         setError(false);
         setSuccess(true);
         setMessage(response.data?.message);
         setOtp("");
       } else {
         setMessage(response.data?.message);
+        setDisabled(false);
+        setLoading(false);
         setSuccess(false);
         setError(true);
       }
@@ -75,7 +82,26 @@ const ActivateAccount = () => {
                 />
               </div>
             </div>
-            <FormButton title="Activate" />
+            <button
+              className={`w-full text-white p-3 rounded focus:outline-none focus:shadow-outline cursor-pointer ${
+                disabled
+                  ? "bg-lightblue bg-opacity-30"
+                  : "bg-blue hover:bg-opacity-90"
+              }`}
+              disabled={disabled}
+            >
+              {loading ? (
+                <ClipLoader
+                  color="#ffffff"
+                  loading={loading}
+                  size={15}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "Send email"
+              )}
+            </button>
           </form>
           <p className="mt-10 text-gray-600 text-sm">
             Create Account?{"  "}

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { Navigate, redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 // Components
 import FormButton from "../../components/formComponents/FormButton";
@@ -22,7 +22,7 @@ const VerifyAccount = () => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [ipAddress, setIpAddress] = useState("11.11.11.12");
-  const [userAgent, setUserAgent] = useState(navigator.userAgent);
+  const [userAgent] = useState(navigator.userAgent);
   const [redirect, setRedirect] = useState(false);
   const token = useParams();
   const dispatch = useDispatch();

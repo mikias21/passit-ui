@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 // Components
-import FormButton from "../../components/formComponents/FormButton";
 import ThemeSwitcher from "../../components/utilComponents/ThemeSwticher";
 
 // Icons
-import { FaEnvelope } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
+import ClipLoader from "react-spinners/ClipLoader";
 
 // Service
 import signIn from "../../services/signinService";
@@ -27,8 +27,10 @@ const SigninPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [ipAddress, setIpAddress] = useState("11.11.11.11");
-  const [userAgent, setUserAgent] = useState(navigator.userAgent);
+  const [userAgent] = useState(navigator.userAgent);
   const [error, setError] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState(
     "Use your email and password to log in."
   );
@@ -51,6 +53,8 @@ const SigninPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setDisabled(true);
 
     try {
       const response = await signIn(email, password, ipAddress, userAgent);
@@ -60,8 +64,12 @@ const SigninPage = () => {
           access_token: response.data?.access_token,
           token_type: response.data?.token_type,
         };
+        setLoading(false);
+        setDisabled(false);
         dispatch(setToken(userData));
       } else {
+        setLoading(false);
+        setDisabled(false);
         setError(true);
         setPassword("");
         setMessage(response.data?.message);
@@ -139,7 +147,26 @@ const SigninPage = () => {
                 <FaLock className="absolute right-7 top-1/2 transform -translate-y-1/2 text-slate-500" />
               </div>
             </div>
-            <FormButton title="Sign in" />
+            <button
+              className={`w-full text-white p-3 rounded focus:outline-none focus:shadow-outline cursor-pointer ${
+                disabled
+                  ? "bg-lightblue bg-opacity-30"
+                  : "bg-blue hover:bg-opacity-90"
+              }`}
+              disabled={disabled}
+            >
+              {loading ? (
+                <ClipLoader
+                  color="#ffffff"
+                  loading={loading}
+                  size={15}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "Sign in"
+              )}
+            </button>
           </form>
           <p className="mt-10 text-gray-600 text-sm">
             Create Account?{"  "}
