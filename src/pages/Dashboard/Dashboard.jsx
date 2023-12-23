@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 // Components
 import Sidebar from "../../components/dashboardComponents/Sidebar";
@@ -10,11 +11,30 @@ import AddButton from "../../components/dashboardComponents/AddButton";
 
 // Custom hooks
 import useAuth from "../../hooks/useAuth";
+import { setUserPassData } from "../../slices/authSlice";
+
+// Service
+import { getPasswords } from "../../services/mainService";
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { isAuthenticated } = useAuth();
+  const token = useSelector((state) => state.token);
+  const dispatch = useDispatch();
   // const isAuthenticated = true;
+
+  useEffect(() => {
+    getPasswords(token)
+      .then((res) => {
+        if (res.status === 200) {
+          const data = { data: res.data };
+          dispatch(setUserPassData(data));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [dispatch, token]);
 
   return (
     <>
