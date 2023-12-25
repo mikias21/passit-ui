@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // Icons
 import { LuView } from "react-icons/lu";
@@ -8,13 +8,131 @@ import { IoCopyOutline } from "react-icons/io5";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
+// Services
+import { updatePassword, deletePassword } from "../../services/mainService";
+
+// Slice
+import { deleteSinglePassword } from "../../slices/authSlice";
+
 const TableOne = () => {
   const data = useSelector((state) => state.usePassData);
+  const [passwordID, setPasswordID] = useState("");
+  const [passwordLabelView, setPasswordLabelView] = useState("");
+  const [passwordCategoryView, setPasswordCategoryView] = useState("main");
+  const [passwordView, setPasswordView] = useState("");
+  const [passwordURLView, setPasswordURLView] = useState();
+  const [passwordDescriptionView, setPasswordDiscriptionView] = useState("");
+  const [passwordDateTimeView, setPasswordDateTimeView] = useState("");
+  const [updateError, setUpdateError] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [deleteError, setDeleteError] = useState(false);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [updateMessage, setUpdateMessage] = useState("");
+  const [deleteMessage, setDeleteMessage] = useState("");
+  const [passwordLabelUpdate, setPasswordLabelUpdate] = useState("");
+  const [passwordUpdate, setPasswordUpdate] = useState("");
+  const [passwordURLUpdate, setPasswordURLUpdate] = useState("");
+  const [passwordDescriptionUpdate, setPasswordDescriptionUpdate] =
+    useState("");
 
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [deletePasswordLabel, setDeletePasswordLabel] = useState("");
+  const token = useSelector((state) => state.token);
+  const dispatch = useDispatch();
 
-  const toggleModal = () => {
+  const toggleModal = (password_id) => {
+    setPasswordID(password_id);
+    const filteredData = data.filter(
+      (item) => item.password_id === password_id
+    );
+    setPasswordLabelView(filteredData[0]?.label);
+    setPasswordCategoryView(filteredData[0]?.category);
+    setPasswordView(filteredData[0]?.password);
+    setPasswordURLView(
+      filteredData[0]?.url ? filteredData[0]?.url : "URL or domain name"
+    );
+    setPasswordDiscriptionView(
+      filteredData[0]?.description
+        ? filteredData[0]?.description
+        : "Some description"
+    );
+
+    const dateTime = new Date(filteredData[0]?.added_date_time);
+    const formattedDate = dateTime.toLocaleDateString();
+    const formattedTime = dateTime.toLocaleTimeString();
+    setPasswordDateTimeView(`${formattedDate} ${formattedTime}`);
+
     setIsViewModalOpen(!isViewModalOpen);
+  };
+
+  const handleUpdateSubmit = (e) => {
+    e.preventDefault();
+    setUpdateError(false);
+    setUpdateSuccess(false);
+    setUpdateMessage("");
+
+    updatePassword(
+      token,
+      passwordID,
+      passwordLabelUpdate,
+      passwordUpdate,
+      passwordURLUpdate,
+      passwordDescriptionUpdate
+    )
+      .then((res) => {
+        if (res.data?.status !== 201) {
+          setUpdateError(true);
+          setUpdateMessage(res.data?.message);
+        }
+        if (res.data?.status === null) {
+          setUpdateError(false);
+          setUpdateSuccess(true);
+          setUpdateMessage("Password updated successfully");
+          setPasswordDiscriptionView(res.data?.description);
+          setPasswordLabelView(
+            res.data?.label ? res.data?.label : passwordLabelView
+          );
+          setPasswordView(
+            res.data?.password ? res.data?.password : passwordView
+          );
+          setPasswordURLView(res.data?.url);
+          setPasswordLabelUpdate("");
+          setPasswordUpdate("");
+          setPasswordURLUpdate("");
+          setPasswordDescriptionUpdate("");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleDeleteSubmit = (e) => {
+    e.preventDefault();
+    setDeleteError(false);
+    setDeleteSuccess(false);
+    setDeleteMessage("");
+    if (
+      passwordLabelView.toUpperCase().trim() ===
+      deletePasswordLabel.toUpperCase().trim()
+    ) {
+      deletePassword(token, passwordID)
+        .then((res) => {
+          if (res.data?.status !== null) {
+            setDeleteError(true);
+            setDeleteMessage(res.data?.message);
+          }
+
+          if (res.data?.status === null) {
+            setDeleteError(false);
+            setDeleteSuccess(true);
+            setDeleteMessage("Password Deleted Successfully.");
+            dispatch(deleteSinglePassword(res.data?.password_id));
+            setIsViewModalOpen(!isViewModalOpen);
+            setDeletePasswordLabel("");
+            setDeleteMessage("");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -77,7 +195,7 @@ const TableOne = () => {
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5 sm:items-center sm:justify-center sm:space-x-7 text-2xl">
               <LuView
                 className="text-blue cursor-pointer"
-                onClick={toggleModal}
+                onClick={() => toggleModal(item?.password_id)}
               />
             </div>
           </div>
@@ -97,73 +215,90 @@ const TableOne = () => {
               />
             </div>
             <hr className="mt-2 w-5/12 border-slate-200" />
-            <div className="mt-4 mb-4 border border-slate-100 p-2 shadow-md">
+            <div className="mt-4 mb-4 border border-slate-100 p-2 shadow-md dark:border-slate-900">
               <div className="mb-2">
                 <IoCopyOutline className="float-right text-blue cursor-pointer" />
               </div>
               <div className="mt-6 text-xs">
                 <ul>
                   <li className="text-xs mb-2">
-                    <span className="font-bold">Password Label</span> Gmail
+                    <span className="font-bold">Password Label</span>{" "}
+                    {passwordLabelView}
                   </li>
                   <li className="text-xs mb-2">
-                    <span className="font-bold">Password Category</span> main
+                    <span className="font-bold">Password Category</span>{" "}
+                    {passwordCategoryView}
                   </li>
                   <li className="text-xs mb-2 flex items-center space-x-5">
                     <span className="font-bold">password </span>{" "}
-                    <span className=" blur-sm">secret here</span>
+                    <span className=" blur-sm">{passwordView}</span>
                     <FaEye className="text-blue cursor-pointer" />
                   </li>
                   <li className="text-xs mb-2">
                     <span className="font-bold">Password URL</span>{" "}
-                    <span className="text-blue">gmail.com</span>
+                    <span className="text-blue">{passwordURLView}</span>
                   </li>
                   <li className="text-xs mb-2">
-                    <span className="font-bold">Description</span> Gmail
+                    <span className="font-bold">Description</span>{" "}
+                    {passwordDescriptionView}
                   </li>
                   <li className="text-xs mb-2">
                     <span className="font-bold">Created Date Time</span>{" "}
-                    12//11/2024 12:34:54
+                    {passwordDateTimeView}
                   </li>
                 </ul>
               </div>
             </div>
             <div>
               <div>
-                <form action="" className="mt-10">
-                  <p className=" text-orange-500 text-sm mb-4">
-                    Update password
+                <form
+                  action=""
+                  className="mt-10"
+                  onSubmit={(e) => handleUpdateSubmit(e)}
+                >
+                  <p
+                    className={`text-xs font-popins mb-2 ${
+                      updateError ? "text-red-500" : ""
+                    } ${updateSuccess ? "text-green-500" : ""}`}
+                  >
+                    {updateMessage}
                   </p>
                   <div className="flex items-center gap-2">
                     <div className="w-full">
                       <input
-                        placeholder="Password Label"
+                        placeholder={passwordLabelView}
                         type="text"
-                        className="border mb-4 rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none"
+                        className="border mb-4 rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none dark:bg-slate-200"
+                        value={passwordLabelUpdate}
+                        onChange={(e) => setPasswordLabelUpdate(e.target.value)}
                       />
                     </div>
                     <div className="w-full">
                       <input
-                        placeholder="password"
+                        placeholder="**************"
                         type="text"
-                        className="border mb-4 rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none"
+                        value={passwordUpdate}
+                        onChange={(e) => setPasswordUpdate(e.target.value)}
+                        className="border mb-4 rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none dark:bg-slate-200"
                       />
                     </div>
                   </div>
                   <div className="flex items-center gap-2 mb-4">
                     <div className="w-full">
                       <input
-                        placeholder="main"
+                        placeholder={passwordCategoryView}
                         disabled
                         type="text"
-                        className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none "
+                        className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none dark:border-none"
                       />
                     </div>
                     <div className="w-full">
                       <input
-                        placeholder="URL or domain name"
+                        placeholder={passwordURLView}
                         type="text"
-                        className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none"
+                        value={passwordURLUpdate}
+                        onChange={(e) => setPasswordURLUpdate(e.target.value)}
+                        className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none dark:bg-slate-200"
                       />
                     </div>
                   </div>
@@ -171,36 +306,55 @@ const TableOne = () => {
                     <textarea
                       name="description"
                       id="description"
+                      value={passwordDescriptionUpdate}
+                      onChange={(e) =>
+                        setPasswordDescriptionUpdate(e.target.value)
+                      }
                       cols="30"
                       rows="5"
-                      placeholder="Update comments"
-                      className="w-full border p-2 rounded-xs border-slate-300 text-xs font-open focus:outline-none focus:border-blue resize-none text-black dark:focus:border-none"
+                      placeholder={passwordDescriptionView}
+                      className="w-full border p-2 rounded-xs border-slate-300 text-xs font-open focus:outline-none focus:border-blue resize-none text-black dark:focus:border-none dark:bg-slate-200"
                     ></textarea>
                   </div>
-                  <div className="flex w-6 h-6 bg-blue text-center rounded-full text-white items-center mt-2 float-right">
+                  <button className="flex w-6 h-6 bg-blue text-center rounded-full text-white items-center mt-2 float-right hover:opacity-80">
                     <IoCheckmarkSharp className="w-full mx-auto cursor-pointer" />
-                  </div>
+                  </button>
                 </form>
               </div>
               <div className="mt-10 mb-5">
-                <p className=" text-red-600 text-sm">Delete password</p>
-                <form action="" className="mt-4">
-                  <p className="text-xs mb-2">
-                    <span className="text-red-600">
-                      Are you sure you want to delete ?
-                    </span>{" "}
-                    Type <span className="italic">password</span> and submit
+                <p className="text-xs mb-2">
+                  <span className="text-red-600">
+                    Are you sure you want to delete ?
+                  </span>{" "}
+                  Type{" "}
+                  <span className="italic font-bold">{passwordLabelView}</span>{" "}
+                  and submit
+                </p>
+                <form
+                  action=""
+                  className="mt-4"
+                  onSubmit={(e) => handleDeleteSubmit(e)}
+                >
+                  <p
+                    className={`text-xs font-popins mb-2 ${
+                      deleteError ? "text-red-500" : ""
+                    } ${deleteSuccess ? "text-green-500" : ""}`}
+                  >
+                    {deleteMessage}
                   </p>
+
                   <div className="w-full">
                     <input
                       placeholder="password"
                       type="text"
-                      className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none"
+                      className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none dark:bg-slate-200"
+                      value={deletePasswordLabel}
+                      onChange={(e) => setDeletePasswordLabel(e.target.value)}
                     />
                   </div>
-                  <div className="flex w-6 h-6 bg-red-500 text-center rounded-full text-white items-center mt-2 float-right">
+                  <button className="flex w-6 h-6 bg-red-500 text-center rounded-full text-white items-center mt-2 float-right hover:opacity-80">
                     <IoCheckmarkSharp className="w-full mx-auto cursor-pointer" />
-                  </div>
+                  </button>
                 </form>
               </div>
             </div>
