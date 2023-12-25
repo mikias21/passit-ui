@@ -26,14 +26,16 @@ const Dashboard = () => {
   useEffect(() => {
     getPasswords(token)
       .then((res) => {
-        if (res.status === 200) {
+        if (res.data.length === 1) {
+          if (res.data[0]?.status === 401) {
+            console.log("you need to login in"); // here should be redirection
+          }
+        } else {
           const data = { data: res.data };
           dispatch(setUserPassData(data));
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch();
   }, [dispatch, token]);
 
   return (

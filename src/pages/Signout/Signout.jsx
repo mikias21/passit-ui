@@ -23,15 +23,13 @@ const Signout = () => {
             setRedirect(true);
             setToken({ access_token: null });
             dispatch(setIsAuthenticated({ value: false }));
-          }
-        })
-        .catch((err) => {
-          if (err.response.status === 401 || err.response.status === 400) {
+          } else {
             setRedirect(true);
             setToken({ access_token: null });
             dispatch(setIsAuthenticated({ value: false }));
           }
-        });
+        })
+        .catch();
     } else {
       dispatch(setIsAuthenticated({ value: false }));
       setRedirect(true);

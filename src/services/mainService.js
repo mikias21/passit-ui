@@ -15,4 +15,32 @@ const getPasswords = async (token) => {
   }
 };
 
-export { getPasswords };
+const addPassword = async (
+  token,
+  label,
+  password,
+  category,
+  url,
+  description
+) => {
+  const customHeader = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const response = await axios.post(
+      "http://localhost:5000/passwords/",
+      { label, password, category, url, description },
+      customHeader
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export { getPasswords, addPassword };
