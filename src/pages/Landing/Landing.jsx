@@ -3,7 +3,7 @@ import Hero from "../../components/landingComponents/Hero";
 
 const Landing = () => {
   return (
-    <div className="px-10">
+    <div className="px-20 dark:bg-black">
       <Navbar />
       <Hero />
     </div>

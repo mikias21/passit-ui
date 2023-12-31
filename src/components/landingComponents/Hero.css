@@ -1,0 +1,7 @@
+.hero-image{
+    margin-top: -20px;
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 62% 38% 62% 38% / 65% 69% 31% 35%;
+}

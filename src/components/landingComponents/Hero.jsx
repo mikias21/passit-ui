@@ -2,16 +2,18 @@ import { Link } from "react-router-dom";
 
 import Container from "./Container";
 
+import "./Hero.css";
+
 const Hero = () => {
   return (
     <>
-      <Container className="flex flex-wrap font-popins">
+      <Container className="flex flex-wrap font-popins mx-10">
         <div className="flex items-center w-full lg:w-1/2">
           <div className="max-w-2xl mb-8">
             <h1 className="text-4xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
               Securely Store Your Passwords with Passit
             </h1>
-            <p className="py-5 text-lg leading-normal text-gray-500 lg:text-xl xl:text-2xl font-popins">
+            <p className="py-5 text-lg leading-normal text-gray-500 lg:text-sm xl:text-sm font-popins dark:text-white">
               Passit provides a secure and convenient platform to store and
               manage your passwords. Keep your sensitive information protected
               with our advanced encryption technology.
@@ -30,14 +32,8 @@ const Hero = () => {
           </div>
         </div>
         <div className="flex items-center justify-center w-full lg:w-1/2">
-          <div className="">
-            <img
-              src="/images/hero.png"
-              alt="HERO"
-              className="object-cover"
-              width="500"
-              height="500"
-            />
+          <div>
+            <img src="/images/6491945.jpg" alt="HERO" className="hero-image" />
           </div>
         </div>
       </Container>
