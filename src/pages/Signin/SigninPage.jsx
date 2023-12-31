@@ -119,7 +119,7 @@ const SigninPage = () => {
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary text-black dark:bg-slate-200"
+                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary text-black dark:bg-[#191919] dark:border-none dark:text-white"
                   placeholder="Enter your email"
                   required
                 />
@@ -140,7 +140,7 @@ const SigninPage = () => {
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="text-black w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary dark:bg-slate-200"
+                  className="text-black w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary dark:bg-[#191919] dark:border-none dark:text-white"
                   placeholder="Your password"
                   required
                 />

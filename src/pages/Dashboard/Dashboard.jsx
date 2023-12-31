@@ -2,6 +2,12 @@ import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+// Icons
+import { MdDelete } from "react-icons/md";
+import { IoIosSave } from "react-icons/io";
+import { MdNotificationImportant } from "react-icons/md";
+import { IoIosWarning } from "react-icons/io";
+
 // Components
 import Sidebar from "../../components/dashboardComponents/Sidebar";
 import Header from "../../components/dashboardComponents/Header";
@@ -53,10 +59,14 @@ const Dashboard = () => {
               <main>
                 <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-                    <CardOne />
-                    <CardOne />
-                    <CardOne />
-                    <CardOne />
+                    <CardOne title="Stored" amount="__" Icon={IoIosSave} />
+                    <CardOne title="Deleted" amount="__" Icon={MdDelete} />
+                    <CardOne
+                      title="Important"
+                      amount="__"
+                      Icon={MdNotificationImportant}
+                    />
+                    <CardOne title="Issues" amount="__" Icon={IoIosWarning} />
                   </div>
                   <div className="col-span-12 xl:col-span-8 mt-8">
                     <TableOne />

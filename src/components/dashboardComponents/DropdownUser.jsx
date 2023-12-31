@@ -58,7 +58,7 @@ const DropdownUser = () => {
         </div>
 
         <svg
-          className={`hidden fill-current sm:block ${
+          className={`hidden fill-current sm:block dark:text-white ${
             dropdownOpen ? "rotate-180" : ""
           }`}
           width="12"

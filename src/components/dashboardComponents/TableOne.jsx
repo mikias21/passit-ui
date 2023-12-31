@@ -324,7 +324,7 @@ const TableOne = () => {
                       <input
                         placeholder={passwordLabelView}
                         type="text"
-                        className="border mb-4 rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none dark:bg-slate-200"
+                        className="border mb-4 rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:bg-[#111] dark:text-slate-200 dark:border dark:border-slate-600"
                         value={passwordLabelUpdate}
                         onChange={(e) => setPasswordLabelUpdate(e.target.value)}
                       />
@@ -335,7 +335,7 @@ const TableOne = () => {
                         type="text"
                         value={passwordUpdate}
                         onChange={(e) => setPasswordUpdate(e.target.value)}
-                        className="border mb-4 rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none dark:bg-slate-200"
+                        className="border mb-4 rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:bg-[#111] dark:text-slate-200 dark:border dark:border-slate-600"
                       />
                     </div>
                   </div>
@@ -345,7 +345,7 @@ const TableOne = () => {
                         placeholder={passwordCategoryView}
                         disabled
                         type="text"
-                        className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none dark:border-none"
+                        className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:bg-[#111] dark:text-slate-200 dark:border dark:border-slate-600"
                       />
                     </div>
                     <div className="w-full">
@@ -354,7 +354,7 @@ const TableOne = () => {
                         type="text"
                         value={passwordURLUpdate}
                         onChange={(e) => setPasswordURLUpdate(e.target.value)}
-                        className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none dark:bg-slate-200"
+                        className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:bg-[#111] dark:text-slate-200 dark:border dark:border-slate-600"
                       />
                     </div>
                   </div>
@@ -369,7 +369,7 @@ const TableOne = () => {
                       cols="30"
                       rows="5"
                       placeholder={passwordDescriptionView}
-                      className="w-full border p-2 rounded-xs border-slate-300 text-xs font-open focus:outline-none focus:border-blue resize-none text-black dark:focus:border-none dark:bg-slate-200"
+                      className="w-full border p-2 rounded-xs border-slate-300 text-xs font-open focus:outline-none focus:border-blue resize-none text-black dark:bg-[#111] dark:text-slate-200 dark:border dark:border-slate-600"
                     ></textarea>
                   </div>
                   {updateIsLoading ? (
@@ -415,7 +415,7 @@ const TableOne = () => {
                     <input
                       placeholder="password"
                       type="text"
-                      className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:focus:border-none dark:bg-slate-200"
+                      className="border rounded-sm p-2 w-full text-xs border-slate-300 font-open focus:outline-none focus:border-blue text-black dark:bg-[#111] dark:text-slate-200 dark:border dark:border-slate-600"
                       value={deletePasswordLabel}
                       onChange={(e) => setDeletePasswordLabel(e.target.value)}
                     />
