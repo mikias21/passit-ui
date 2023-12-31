@@ -17,7 +17,7 @@ import AddButton from "../../components/dashboardComponents/AddButton";
 
 // Custom hooks
 import useAuth from "../../hooks/useAuth";
-import { setUserPassData } from "../../slices/authSlice";
+import { setUserPassData, setIsAuthenticated } from "../../slices/authSlice";
 
 // Service
 import { getPasswords } from "../../services/mainService";
@@ -32,11 +32,11 @@ const Dashboard = () => {
   useEffect(() => {
     getPasswords(token)
       .then((res) => {
-        if (res.status === 200) {
+        if (res.data[0].status === 401) {
+          dispatch(setIsAuthenticated(false));
+        } else {
           const data = { data: res.data };
           dispatch(setUserPassData(data));
-        } else if (res.data[0]?.status === 401) {
-          console.log("you need to login in");
         }
       })
       .catch();
