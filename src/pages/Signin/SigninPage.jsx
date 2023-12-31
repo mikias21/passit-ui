@@ -26,7 +26,7 @@ const SigninPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [ipAddress, setIpAddress] = useState("11.11.11.11");
+  const [ipAddress, setIpAddress] = useState("");
   const [userAgent] = useState(navigator.userAgent);
   const [error, setError] = useState(false);
   const [disabled, setDisabled] = useState(false);

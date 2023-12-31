@@ -71,19 +71,18 @@ const updatePassword = async (
   }
 };
 
-const deletePassword = async (token, password_id) => {
-  const customHeader = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  };
-
+const deletePassword = async (token, password_id, label) => {
   try {
     const response = await axios.delete(
       `http://localhost:5000/passwords/${password_id}`,
-      customHeader
+      {
+        data: { label },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
     );
     return response;
   } catch (error) {
@@ -91,4 +90,28 @@ const deletePassword = async (token, password_id) => {
   }
 };
 
-export { getPasswords, addPassword, updatePassword, deletePassword };
+const viewPassword = async (token, password_id) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/passwords/view/${password_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export {
+  getPasswords,
+  addPassword,
+  updatePassword,
+  deletePassword,
+  viewPassword,
+};

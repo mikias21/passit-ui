@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { ClipLoader } from "react-spinners";
 
 // Icons
 import { LuView } from "react-icons/lu";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoCopyOutline } from "react-icons/io5";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 // Services
-import { updatePassword, deletePassword } from "../../services/mainService";
+import {
+  updatePassword,
+  deletePassword,
+  viewPassword,
+} from "../../services/mainService";
 
 // Slice
 import { deleteSinglePassword } from "../../slices/authSlice";
@@ -34,8 +39,13 @@ const TableOne = () => {
   const [passwordURLUpdate, setPasswordURLUpdate] = useState("");
   const [passwordDescriptionUpdate, setPasswordDescriptionUpdate] =
     useState("");
+  const [plain, setPlain] = useState("");
+  const [updateIsLoading, setUpdateIsLoading] = useState(false);
+  const [deleteIsLoading, setDeleteIsLoading] = useState(false);
 
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isBlurred, setIsBlurred] = useState(true);
+  const [isHidden, setIsHidden] = useState(true);
   const [deletePasswordLabel, setDeletePasswordLabel] = useState("");
   const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
@@ -70,6 +80,7 @@ const TableOne = () => {
     setUpdateError(false);
     setUpdateSuccess(false);
     setUpdateMessage("");
+    setUpdateIsLoading(true);
 
     updatePassword(
       token,
@@ -83,8 +94,10 @@ const TableOne = () => {
         if (res.data?.status !== 201) {
           setUpdateError(true);
           setUpdateMessage(res.data?.message);
+          setUpdateIsLoading(false);
         }
         if (res.data?.status === null) {
+          setUpdateIsLoading(false);
           setUpdateError(false);
           setUpdateSuccess(true);
           setUpdateMessage("Password updated successfully");
@@ -110,28 +123,51 @@ const TableOne = () => {
     setDeleteError(false);
     setDeleteSuccess(false);
     setDeleteMessage("");
-    if (
-      passwordLabelView.toUpperCase().trim() ===
-      deletePasswordLabel.toUpperCase().trim()
-    ) {
-      deletePassword(token, passwordID)
-        .then((res) => {
-          if (res.data?.status !== null) {
-            setDeleteError(true);
-            setDeleteMessage(res.data?.message);
-          }
+    setDeleteIsLoading(true);
 
-          if (res.data?.status === null) {
-            setDeleteError(false);
-            setDeleteSuccess(true);
-            setDeleteMessage("Password Deleted Successfully.");
-            dispatch(deleteSinglePassword(res.data?.password_id));
-            setIsViewModalOpen(!isViewModalOpen);
-            setDeletePasswordLabel("");
-            setDeleteMessage("");
-          }
-        })
-        .catch((err) => console.log(err));
+    deletePassword(token, passwordID, deletePasswordLabel)
+      .then((res) => {
+        if (res.data?.status !== null) {
+          setDeleteIsLoading(false);
+          setDeleteError(true);
+          setDeleteMessage(res.data?.message);
+        }
+
+        if (res.data?.status === null) {
+          setDeleteIsLoading(false);
+          setDeleteError(false);
+          setDeleteSuccess(true);
+          setDeleteMessage("Password Deleted Successfully.");
+          dispatch(deleteSinglePassword(res.data?.password_id));
+          setIsViewModalOpen(!isViewModalOpen);
+          setDeletePasswordLabel("");
+          setDeleteMessage("");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleViewPassword = () => {
+    viewPassword(token, passwordID)
+      .then((res) => {
+        if (res.data?.status === 200) {
+          setIsBlurred(false);
+          setIsHidden(false);
+          setPlain(res.data?.password);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleHidePassword = () => {
+    setIsBlurred(true);
+    setIsHidden(true);
+    setPlain("");
+  };
+
+  const copyPassword = () => {
+    if (!isBlurred) {
+      navigator.clipboard.writeText(plain);
     }
   };
 
@@ -217,7 +253,12 @@ const TableOne = () => {
             <hr className="mt-2 w-5/12 border-slate-200" />
             <div className="mt-4 mb-4 border border-slate-100 p-2 shadow-md dark:border-slate-900">
               <div className="mb-2">
-                <IoCopyOutline className="float-right text-blue cursor-pointer" />
+                <IoCopyOutline
+                  className={`float-right ${
+                    isBlurred ? "text-slate-500" : "text-blue cursor-pointer"
+                  }`}
+                  onClick={copyPassword}
+                />
               </div>
               <div className="mt-6 text-xs">
                 <ul>
@@ -231,12 +272,26 @@ const TableOne = () => {
                   </li>
                   <li className="text-xs mb-2 flex items-center space-x-5">
                     <span className="font-bold">password </span>{" "}
-                    <span className=" blur-sm">{passwordView}</span>
-                    <FaEye className="text-blue cursor-pointer" />
+                    <span className={`${isBlurred ? "blur-sm" : ""}`}>
+                      {isHidden ? passwordView : plain}
+                    </span>
+                    {isHidden ? (
+                      <FaEye
+                        className="text-blue cursor-pointer"
+                        onClick={handleViewPassword}
+                      />
+                    ) : (
+                      <FaEyeSlash
+                        className="text-blue cursor-pointer"
+                        onClick={handleHidePassword}
+                      />
+                    )}
                   </li>
-                  <li className="text-xs mb-2">
+                  <li className="text-xs mb-2 flex space-x-5">
                     <span className="font-bold">Password URL</span>{" "}
-                    <span className="text-blue">{passwordURLView}</span>
+                    <span className="text-blue whitespace-normal overflow-hidden line-clamp-0 text-ellipsis">
+                      {passwordURLView}
+                    </span>
                   </li>
                   <li className="text-xs mb-2">
                     <span className="font-bold">Description</span>{" "}
@@ -251,9 +306,10 @@ const TableOne = () => {
             </div>
             <div>
               <div>
+                <p className="mt-10">Update password details</p>
                 <form
                   action=""
-                  className="mt-10"
+                  className="mt-5"
                   onSubmit={(e) => handleUpdateSubmit(e)}
                 >
                   <p
@@ -316,9 +372,21 @@ const TableOne = () => {
                       className="w-full border p-2 rounded-xs border-slate-300 text-xs font-open focus:outline-none focus:border-blue resize-none text-black dark:focus:border-none dark:bg-slate-200"
                     ></textarea>
                   </div>
-                  <button className="flex w-6 h-6 bg-blue text-center rounded-full text-white items-center mt-2 float-right hover:opacity-80">
-                    <IoCheckmarkSharp className="w-full mx-auto cursor-pointer" />
-                  </button>
+                  {updateIsLoading ? (
+                    <div className="flex float-right">
+                      <ClipLoader
+                        color="#3742fa"
+                        loading={true}
+                        size={20}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                      />
+                    </div>
+                  ) : (
+                    <button className="flex w-6 h-6 bg-blue text-center rounded-full text-white items-center mt-2 float-right hover:opacity-80">
+                      <IoCheckmarkSharp className="w-full mx-auto cursor-pointer" />
+                    </button>
+                  )}
                 </form>
               </div>
               <div className="mt-10 mb-5">
@@ -352,9 +420,21 @@ const TableOne = () => {
                       onChange={(e) => setDeletePasswordLabel(e.target.value)}
                     />
                   </div>
-                  <button className="flex w-6 h-6 bg-red-500 text-center rounded-full text-white items-center mt-2 float-right hover:opacity-80">
-                    <IoCheckmarkSharp className="w-full mx-auto cursor-pointer" />
-                  </button>
+                  {deleteIsLoading ? (
+                    <div className="flex float-right">
+                      <ClipLoader
+                        color="red"
+                        loading={true}
+                        size={20}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                      />
+                    </div>
+                  ) : (
+                    <button className="flex w-6 h-6 bg-red-500 text-center rounded-full text-white items-center mt-2 float-right hover:opacity-80">
+                      <IoCheckmarkSharp className="w-full mx-auto cursor-pointer" />
+                    </button>
+                  )}
                 </form>
               </div>
             </div>
