@@ -93,7 +93,7 @@ const SigninPage = () => {
           <img src="/images/7070629_3293466.svg" alt="" className="w-full" />
         </div>
 
-        <div className="w-full md:w-1/2 font-body dark:text-white dark:bg-[#111] p-10 dark:rounded-sm dark:shadow-sm">
+        <div className="w-full md:w-1/2 font-body dark:text-white dark:bg-[#111] p-5 dark:rounded-sm dark:shadow-sm">
           <form action="" onSubmit={(e) => handleSubmit(e)}>
             <h3 className="text-2xl font-bold mb-4 font-body">
               Sign in to your passit account

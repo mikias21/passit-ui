@@ -80,7 +80,7 @@ const SignupPage = () => {
           <img src="/images/7070629_3293466.svg" alt="" className="w-full" />
         </div>
 
-        <div className="w-full md:w-1/2 font-body dark:text-white dark:bg-[#111] p-10 dark:rounded-sm dark:shadow-sm">
+        <div className="w-full md:w-1/2 font-body dark:text-white dark:bg-[#111] p-5 dark:rounded-sm dark:shadow-sm">
           <form action="" onSubmit={(e) => handleSubmit(e)}>
             <h3 className="text-2xl font-bold mb-4 font-body">
               Sign Up to passit
@@ -106,7 +106,7 @@ const SignupPage = () => {
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary dark:bg-slate-200 text-black dark:bg-[#191919] dark:border-none dark:text-white"
+                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary text-black dark:bg-[#191919] dark:border-none dark:text-white"
                   placeholder="Enter your email"
                   required
                 />
@@ -127,7 +127,7 @@ const SignupPage = () => {
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary dark:bg-slate-200 text-black dark:bg-[#191919] dark:border-none dark:text-white"
+                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary text-black dark:bg-[#191919] dark:border-none dark:text-white"
                   placeholder="Your password"
                   required
                 />

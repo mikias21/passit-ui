@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 
+// Icons
+import { PiSignInLight } from "react-icons/pi";
+
 // Local imports
 import ThemeSwitcher from "../utilComponents/ThemeSwticher";
 
@@ -22,12 +25,12 @@ const Navbar = () => {
         </Disclosure>
 
         <div className="hidden mr-3 space-x-4 lg:flex nav__item">
-          <Link
-            to="/signin"
-            className="px-6 py-2 text-slate-900 shadow-lg md:ml-5 underline underline-offset-2 dark:text-blue"
-          >
-            Sign in
-          </Link>
+          <div className="flex items-center px-6 py-2 text-slate-900 shadow-lg md:ml-5 dark:text-blue space-x-3 font-popins dark:shadow-slate-700 dark:shadow-xl dark:bg-[#191919]">
+            <Link to="/signin" className="">
+              Sign in
+            </Link>
+            <PiSignInLight />
+          </div>
           <div>
             <ThemeSwitcher />
           </div>

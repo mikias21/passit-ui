@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import Typewriter from "typewriter-effect";
 import Container from "./Container";
 
 import "./Hero.css";
@@ -10,8 +10,20 @@ const Hero = () => {
       <Container className="flex flex-wrap font-popins mx-10">
         <div className="flex items-center w-full lg:w-1/2">
           <div className="max-w-2xl mb-8">
-            <h1 className="text-4xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white">
-              Securely Store Your Passwords with Passit
+            <h1
+              className="text-4xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight dark:text-white"
+              id="heroTitle"
+            >
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter
+                    .typeString("Securely Store Your Passwords with Passit.")
+                    .pauseFor(1000)
+                    .deleteAll()
+                    .typeString("Securely Store Your Passwords with Passit.")
+                    .start();
+                }}
+              />
             </h1>
             <p className="py-5 text-lg leading-normal text-gray-500 lg:text-sm xl:text-sm font-popins dark:text-white">
               Passit provides a secure and convenient platform to store and
