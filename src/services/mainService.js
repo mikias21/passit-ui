@@ -1,8 +1,12 @@
 import axios from "axios";
 
+import constants from "../utils/constants";
+
+const API = constants.API ? constants.RELEASE === false : constants.RELEASE_API;
+
 const getPasswords = async (token) => {
   try {
-    const response = await axios.get("http://localhost:5000/passwords/", {
+    const response = await axios.get(`${API}/passwords/`, {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
@@ -33,7 +37,7 @@ const addPassword = async (
 
   try {
     const response = await axios.post(
-      "http://localhost:5000/passwords/",
+      `${API}/passwords/`,
       { label, password, category, url, description },
       customHeader
     );
@@ -61,7 +65,7 @@ const updatePassword = async (
 
   try {
     const response = await axios.put(
-      `http://localhost:5000/passwords/${password_id}`,
+      `${API}/passwords/${password_id}`,
       { label, password, url, description },
       customHeader
     );
@@ -73,17 +77,14 @@ const updatePassword = async (
 
 const deletePassword = async (token, password_id, label) => {
   try {
-    const response = await axios.delete(
-      `http://localhost:5000/passwords/${password_id}`,
-      {
-        data: { label },
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await axios.delete(`${API}/passwords/${password_id}`, {
+      data: { label },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
     return response;
   } catch (error) {
     throw error;
@@ -92,16 +93,13 @@ const deletePassword = async (token, password_id, label) => {
 
 const viewPassword = async (token, password_id) => {
   try {
-    const response = await axios.get(
-      `http://localhost:5000/passwords/view/${password_id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await axios.get(`${API}/passwords/view/${password_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
     return response;
   } catch (error) {
     throw error;

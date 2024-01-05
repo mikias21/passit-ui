@@ -236,7 +236,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             <ul className="mb-6 flex flex-col gap-1.5">
               <li>
                 <Link
-                  to="/chart"
+                  to="#"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] dark:text-slate-200 dark:hover:bg-slate-500 ${
                     pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
                   }`}
@@ -247,7 +247,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               </li>
               <li>
                 <Link
-                  to="/chart"
+                  to="#"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-[#BFDBFE] dark:text-slate-200 dark:hover:bg-slate-500 ${
                     pathname.includes("chart") && "bg-graydark dark:bg-meta-4"
                   }`}

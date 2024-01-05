@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import constants from "../utils/constants";
+
 const signIn = async (email, password, ip_address, user_agent) => {
   const customHeader = {
     headers: {
@@ -8,9 +10,13 @@ const signIn = async (email, password, ip_address, user_agent) => {
     },
   };
 
+  const API = constants.API
+    ? constants.RELEASE === false
+    : constants.RELEASE_API;
+
   try {
     const response = await axios.post(
-      "http://localhost:5000/auth/signin",
+      `${API}/auth/signin`,
       { email, password, ip_address, user_agent },
       customHeader
     );

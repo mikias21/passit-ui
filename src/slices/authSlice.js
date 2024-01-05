@@ -33,6 +33,16 @@ const authSlice = createSlice({
         (password) => password.password_id !== passwordToRemove
       );
     },
+
+    updateSpecificPassword: (state, action) => {
+      const updatedPassword = action.payload;
+
+      state.usePassData = state.usePassData.map((password) =>
+        password.password_id === updatedPassword.password_id
+          ? updatedPassword
+          : password
+      );
+    },
   },
 });
 
@@ -42,6 +52,7 @@ export const {
   setUserPassData,
   updateUserPassData,
   deleteSinglePassword,
+  updateSpecificPassword,
 } = authSlice.actions;
 
 export default authSlice.reducer;

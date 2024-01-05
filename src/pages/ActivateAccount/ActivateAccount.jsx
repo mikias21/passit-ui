@@ -80,7 +80,7 @@ const ActivateAccount = () => {
                 <input
                   id="pin"
                   type="text"
-                  className="w-full border border-slate-300 p-2 rounded focus:outline-none focus:border-secondary dark:bg-slate-200 text-black"
+                  className="w-full border border-slate-300 p-2 rounded focus:outline-none focus:border-secondary text-black dark:bg-[#191919] dark:border-none dark:text-white"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                 />

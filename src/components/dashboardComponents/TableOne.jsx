@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ClipLoader } from "react-spinners";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Icons
 import { LuView } from "react-icons/lu";
@@ -17,7 +19,10 @@ import {
 } from "../../services/mainService";
 
 // Slice
-import { deleteSinglePassword } from "../../slices/authSlice";
+import {
+  deleteSinglePassword,
+  updateSpecificPassword,
+} from "../../slices/authSlice";
 
 const TableOne = () => {
   const data = useSelector((state) => state.usePassData);
@@ -49,6 +54,7 @@ const TableOne = () => {
   const [deletePasswordLabel, setDeletePasswordLabel] = useState("");
   const token = useSelector((state) => state.token);
   const dispatch = useDispatch();
+  const notify = () => toast("Password copied!");
 
   const toggleModal = (password_id) => {
     setPasswordID(password_id);
@@ -92,6 +98,7 @@ const TableOne = () => {
     )
       .then((res) => {
         if (res.data?.status !== 201) {
+          dispatch(updateSpecificPassword(res.data));
           setUpdateError(true);
           setUpdateMessage(res.data?.message);
           setUpdateIsLoading(false);
@@ -168,6 +175,7 @@ const TableOne = () => {
   const copyPassword = () => {
     if (!isBlurred) {
       navigator.clipboard.writeText(plain);
+      notify();
     }
   };
 
@@ -176,7 +184,11 @@ const TableOne = () => {
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
         Recently used or added
       </h4>
-
+      <ToastContainer
+        hideProgressBar={true}
+        closeOnClick
+        theme={`dark ? dark : light`}
+      />
       <div className="flex flex-col">
         <div className="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-5">
           <div className="p-2.5 xl:p-5">

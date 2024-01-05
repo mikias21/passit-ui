@@ -51,7 +51,7 @@ const DropdownUser = () => {
 
         <div className="h-12 w-12">
           <img
-            src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=740&t=st=1702167501~exp=1702168101~hmac=868445f29dfd447daae615fd821ecdb4bc0e7e8cb2082208469a2a4fff63459e"
+            src="/images/profile.avif"
             alt="User"
             className="rounded-full object-cover w-full h-full"
           />
@@ -87,7 +87,7 @@ const DropdownUser = () => {
         <ul className="flex flex-col gap-3 border-b border-b-slate-200 border-stroke py-7.5 dark:border-strokedark dark:text-slate-200">
           <li>
             <Link
-              to="/profile"
+              to="#"
               className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-[#BFDBFE] rounded-sm dark:hover:bg-slate-500"
             >
               <FaUserAlt className="text-lg" />
@@ -96,7 +96,7 @@ const DropdownUser = () => {
           </li>
           <li>
             <Link
-              to="/settings"
+              to="#"
               className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary mb-4 w-full hover:bg-[#BFDBFE] rounded-sm dark:hover:bg-slate-500"
             >
               <IoSettingsSharp className="text-lg" />

@@ -10,6 +10,10 @@ const signUp = async (email, password, ip_address, user_agent) => {
     },
   };
 
+  const API = constants.API
+    ? constants.RELEASE === false
+    : constants.RELEASE_API;
+
   let is_email = false;
   let is_phone = false;
 
@@ -19,7 +23,7 @@ const signUp = async (email, password, ip_address, user_agent) => {
 
   try {
     const response = await axios.post(
-      `${constants.API}/auth/signup`,
+      `${API}/auth/signup`,
       { is_email, is_phone, email, password, ip_address, user_agent },
       customHeader
     );

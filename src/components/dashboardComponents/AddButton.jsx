@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ClipLoader } from "react-spinners";
 import { useSelector, useDispatch } from "react-redux";
 
 // Icons
@@ -23,6 +24,7 @@ const AddButton = () => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -33,6 +35,7 @@ const AddButton = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     addPassword(token, label, password, category, url, description)
       .then((res) => {
@@ -44,10 +47,12 @@ const AddButton = () => {
           setError(false);
           setSuccess(true);
           setMessage("Password added successfully");
+          setIsLoading(false);
           dispatch(updateUserPassData(res.data));
         } else if (res.data?.status === 406) {
           setSuccess(false);
           setError(true);
+          setIsLoading(false);
           setMessage(res.data?.message);
         }
       })
@@ -173,7 +178,11 @@ const AddButton = () => {
               </div>
               <div className="mt-4 mb-5">
                 <button className="w-5/12 bg-blue text-white p-2 text-sm rounded hover:bg-opacity-90 focus:outline-none focus:shadow-outline font-popins">
-                  Add password
+                  {isLoading ? (
+                    <ClipLoader size={15} color="white" />
+                  ) : (
+                    "Add password"
+                  )}
                 </button>
               </div>
             </form>

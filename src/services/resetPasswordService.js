@@ -16,9 +16,13 @@ const resetPasswordService = async (
     },
   };
 
+  const API = constants.API
+    ? constants.RELEASE === false
+    : constants.RELEASE_API;
+
   try {
     const response = await axios.post(
-      `${constants.API}/auth/reset_password/${token}`,
+      `${API}/auth/reset_password/${token}`,
       { password, confirm_password, ip_address, user_agent },
       customHeader
     );

@@ -10,9 +10,13 @@ const activateAccount = async (token, otp) => {
     },
   };
 
+  const API = constants.API
+    ? constants.RELEASE === false
+    : constants.RELEASE_API;
+
   try {
     const response = await axios.post(
-      `${constants.API}/auth/activate/${token}`,
+      `${API}/auth/activate/${token}`,
       { otp },
       customHeader
     );

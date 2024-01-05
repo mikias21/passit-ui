@@ -112,7 +112,7 @@ const ResetPassword = () => {
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary dark:bg-slate-200 text-black"
+                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary text-black dark:bg-[#191919] dark:border-none dark:text-white"
                   placeholder="Your password"
                   required
                 />
@@ -133,7 +133,7 @@ const ResetPassword = () => {
                   name="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary dark:bg-slate-200 text-black"
+                  className="w-full border border-slate-300 p-4 rounded focus:outline-none focus:border-secondary text-black dark:bg-[#191919] dark:border-none dark:text-white"
                   placeholder="Confirm your password"
                   required
                 />
