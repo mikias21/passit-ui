@@ -10,9 +10,7 @@ const signUp = async (email, password, ip_address, user_agent) => {
     },
   };
 
-  const API = constants.API
-    ? constants.RELEASE === false
-    : constants.RELEASE_API;
+  const API = !constants.RELEASE ? constants.API : constants.RELEASE_API;
 
   let is_email = false;
   let is_phone = false;

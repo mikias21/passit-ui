@@ -10,9 +10,7 @@ const activateAccount = async (token, otp) => {
     },
   };
 
-  const API = constants.API
-    ? constants.RELEASE === false
-    : constants.RELEASE_API;
+  const API = !constants.RELEASE ? constants.API : constants.RELEASE_API;
 
   try {
     const response = await axios.post(
