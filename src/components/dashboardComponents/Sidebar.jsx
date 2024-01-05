@@ -190,7 +190,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           <ul className="mt-1 mb-5.5 pl-10">
                             <li className="mb-2">
                               <Link
-                                to="/ui/alerts"
+                                to="#"
                                 className=" flex group relative items-center gap-1 rounded-md duration-300 ease-in-out text-xs font-bold dark:text-slate-200 dark:hover:bg-slate-500"
                               >
                                 <IoMdAdd className="text-base" />
@@ -199,7 +199,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                             </li>
                             <li className="mb-2 pl-1">
                               <Link
-                                to="/ui/alerts"
+                                to="#"
                                 className="group relative items-center gap-2.5 rounded-md duration-300 ease-in-out dark:text-slate-200 dark:hover:bg-slate-500"
                               >
                                 Main

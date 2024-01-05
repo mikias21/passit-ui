@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router";
 // Pages
 import Signout from "./pages/Signout/Signout";
 import Landing from "./pages/Landing/Landing";
+import NotFound from "./pages/NotFound/NotFound";
 import SignupPage from "./pages/Signup/SignupPage";
 import SigninPage from "./pages/Signin/SigninPage";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -12,8 +13,8 @@ import VerifyAccount from "./pages/VerifyAccount/VerifyAccount";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import ActivateAccount from "./pages/ActivateAccount/ActivateAccount";
 import Starred from "./pages/Dashboard/DashboardPages/Starred/Starred";
-import Important from "./pages/Dashboard/DashboardPages/Important/Important";
 import Deleted from "./pages/Dashboard/DashboardPages/Deleted/Deleted";
+import Important from "./pages/Dashboard/DashboardPages/Important/Important";
 
 import "./App.css";
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/verify/:token" Component={VerifyAccount} />
           <Route path="/activate/:token" Component={ActivateAccount} />
           <Route path="/signout" Component={Signout} />
+          <Route path="*" Component={NotFound} />
         </Routes>
       </Router>
     </div>

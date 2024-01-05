@@ -32,7 +32,7 @@ const Dashboard = () => {
   useEffect(() => {
     getPasswords(token)
       .then((res) => {
-        if (res.data[0].status === 401) {
+        if (res.data[0]?.status === 401) {
           dispatch(setIsAuthenticated(false));
         } else {
           const data = { data: res.data };
