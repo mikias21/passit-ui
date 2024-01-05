@@ -72,7 +72,7 @@ const AddButton = () => {
       </button>
 
       {isModalOpen && (
-        <div className="fixed -top-5 right-0 bottom-0 left-0 z-50 flex items-center justify-center backdrop-blur">
+        <div className="fixed -top-5 right-0 bottom-0 left-0 z-50 flex items-center justify-center backdrop-blur p-10">
           <div className="bg-white p-4 md:p-5 max-w-md w-full shadow-lg border border-slate-100 mb-10 dark:bg-[#111] dark:text-slate-200 dark:border-none">
             <div className="flex items-start justify-between">
               <h1 className="text-2xl font-popins font-extralight">

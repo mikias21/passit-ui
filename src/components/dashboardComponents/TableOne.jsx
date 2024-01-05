@@ -201,7 +201,7 @@ const TableOne = () => {
               Password
             </h5>
           </div>
-          <div className="p-2.5 text-center xl:p-5">
+          <div className="hidden p-2.5 text-center sm:block xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
               Category
             </h5>
@@ -211,7 +211,7 @@ const TableOne = () => {
               Comments
             </h5>
           </div>
-          <div className="hidden p-2.5 text-center sm:block xl:p-5">
+          <div className="p-2.5 text-center sm:block xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
               Actions
             </h5>
@@ -232,7 +232,7 @@ const TableOne = () => {
               <p className="text-black dark:text-white">************</p>
             </div>
 
-            <div className="flex items-center justify-center p-2.5 xl:p-5 text-xs">
+            <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5 text-xs">
               <p className="text-meta-3">{item?.category}</p>
             </div>
 
@@ -240,7 +240,7 @@ const TableOne = () => {
               <p className="text-black dark:text-white">{item?.description}</p>
             </div>
 
-            <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5 sm:items-center sm:justify-center sm:space-x-7 text-2xl">
+            <div className="flex items-center justify-center p-2.5 sm:flex xl:p-5 sm:items-center sm:justify-center sm:space-x-7 text-2xl">
               <LuView
                 className="text-blue cursor-pointer"
                 onClick={() => toggleModal(item?.password_id)}
@@ -251,7 +251,7 @@ const TableOne = () => {
       </div>
 
       {isViewModalOpen && (
-        <div className="fixed -top-5 right-0 bottom-0 left-0 z-50 flex items-center justify-center backdrop-blur">
+        <div className="fixed -top-5 right-0 bottom-0 left-0 z-50 flex items-center justify-center backdrop-blur p-10">
           <div className="bg-white mt-10 p-4 md:p-5 max-w-md w-full shadow-lg border border-slate-100 mb-10 dark:bg-[#111] dark:text-slate-200 dark:border-none">
             <div className="flex items-start justify-between">
               <h1 className="text-2xl font-popins font-extralight">

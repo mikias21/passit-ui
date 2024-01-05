@@ -103,7 +103,7 @@ const ActivateAccount = () => {
                   data-testid="loader"
                 />
               ) : (
-                "Send email"
+                "Activate Account"
               )}
             </button>
           </form>
