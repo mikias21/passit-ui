@@ -44,9 +44,11 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Anree
+            Anon user
           </span>
-          <span className="block text-xs dark:text-slate-200">UX Designer</span>
+          <span className="block text-xs dark:text-slate-200">
+            Personal account
+          </span>
         </span>
 
         <div className="h-12 w-12">

@@ -1,0 +1,13 @@
+.password-hint{
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.password-hint.hidden{
+    opacity: 0;
+    transform: translateY(-2rem);
+}
+
+.password-hint.block{
+    opacity: 1;
+    transform: translateY(0);
+}

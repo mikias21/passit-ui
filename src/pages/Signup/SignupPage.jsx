@@ -17,6 +17,7 @@ const SignupPage = () => {
   const [message, setMessage] = useState(
     "Create your account using your email and password."
   );
+  const [showHint, setShowHint] = useState(true);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [email, setEmail] = useState("");
@@ -133,9 +134,28 @@ const SignupPage = () => {
                 />
                 <FaLock className="absolute right-7 top-1/2 transform -translate-y-1/2 text-slate-500" />
               </div>
+              <div
+                className={`text-xs mt-2 p-3 border border-slate-100 bg-green-50 pl-5 ${
+                  showHint ? "block" : "hidden"
+                }`}
+              >
+                <ul className=" list-disc">
+                  <li className="m-1">
+                    Should have at least 8 characters long
+                  </li>
+                  <li className="m-1">
+                    Should have at least one captial letter
+                  </li>
+                  <li className="m-1">Should have at least one small letter</li>
+                  <li className="m-1">Should have at least one number</li>
+                  <li className="m-1">
+                    Should have at least one special character
+                  </li>
+                </ul>
+              </div>
             </div>
             <button
-              className={`w-full text-white p-3 rounded focus:outline-none focus:shadow-outline cursor-pointer ${
+              className={`w-full text-white p-3 rounded focus:outline-none focus:shadow-outline cursor-pointer password-hint ${
                 disabled
                   ? "bg-lightblue bg-opacity-30"
                   : "bg-blue hover:bg-opacity-90"
