@@ -26,6 +26,10 @@ const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { isAuthenticated } = useAuth();
   const token = useSelector((state) => state.token);
+  const passDataCounter = useSelector((state) => state.passDataCounter);
+  const deletedPassDataCounter = useSelector(
+    (state) => state.deletedPassDataCounter
+  );
   const dispatch = useDispatch();
   // const isAuthenticated = true;
 
@@ -59,8 +63,16 @@ const Dashboard = () => {
               <main>
                 <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-                    <CardOne title="Stored" amount="__" Icon={IoIosSave} />
-                    <CardOne title="Deleted" amount="__" Icon={MdDelete} />
+                    <CardOne
+                      title="Stored"
+                      amount={passDataCounter}
+                      Icon={IoIosSave}
+                    />
+                    <CardOne
+                      title="Deleted"
+                      amount={deletedPassDataCounter}
+                      Icon={MdDelete}
+                    />
                     <CardOne
                       title="Important"
                       amount="__"

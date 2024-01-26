@@ -7,6 +7,9 @@ const authSlice = createSlice({
     token_type: "bearer",
     isAuthenticated: false,
     usePassData: [],
+    userPassDataDeleted: [],
+    passDataCounter: 0,
+    deletedPassDataCounter: 0,
   },
   reducers: {
     setToken: (state, action) => {
@@ -20,6 +23,7 @@ const authSlice = createSlice({
 
     setUserPassData: (state, action) => {
       state.usePassData = action.payload.data;
+      state.passDataCounter = state.usePassData.length;
     },
 
     updateUserPassData: (state, action) => {
@@ -29,9 +33,19 @@ const authSlice = createSlice({
 
     deleteSinglePassword: (state, action) => {
       const passwordToRemove = action.payload;
+
+      state.userPassDataDeleted = [
+        ...state.userPassDataDeleted,
+        state.usePassData.filter(
+          (password) => password.password_id === passwordToRemove
+        ),
+      ];
+
       state.usePassData = state.usePassData.filter(
         (password) => password.password_id !== passwordToRemove
       );
+
+      state.deletedPassDataCounter = state.userPassDataDeleted.length;
     },
 
     updateSpecificPassword: (state, action) => {
