@@ -17,7 +17,11 @@ import AddButton from "../../components/dashboardComponents/AddButton";
 
 // Custom hooks
 import useAuth from "../../hooks/useAuth";
-import { setUserPassData, setIsAuthenticated } from "../../slices/authSlice";
+import {
+  setUserPassData,
+  setIsAuthenticated,
+  setImportUserPassData,
+} from "../../slices/authSlice";
 
 // Service
 import { getPasswords } from "../../services/mainService";
@@ -30,6 +34,9 @@ const Dashboard = () => {
   const deletedPassDataCounter = useSelector(
     (state) => state.deletedPassDataCounter
   );
+  const importantPassDataCounter = useSelector(
+    (state) => state.importantPassDataCounter
+  );
   const dispatch = useDispatch();
   // const isAuthenticated = true;
 
@@ -40,7 +47,12 @@ const Dashboard = () => {
           dispatch(setIsAuthenticated(false));
         } else {
           const data = { data: res.data };
+          let important = [];
+          res.data.forEach((item) => {
+            if (item?.important === true) important.push(item);
+          });
           dispatch(setUserPassData(data));
+          dispatch(setImportUserPassData({ data: important }));
         }
       })
       .catch();
@@ -75,10 +87,10 @@ const Dashboard = () => {
                     />
                     <CardOne
                       title="Important"
-                      amount="__"
+                      amount={importantPassDataCounter}
                       Icon={MdNotificationImportant}
                     />
-                    <CardOne title="Issues" amount="__" Icon={IoIosWarning} />
+                    <CardOne title="Issues" amount={0} Icon={IoIosWarning} />
                   </div>
                   <div className="col-span-12 xl:col-span-8 mt-8">
                     <TableOne />

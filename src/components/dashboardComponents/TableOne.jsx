@@ -10,18 +10,22 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoCopyOutline } from "react-icons/io5";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { MdNotificationImportant } from "react-icons/md";
+import { MdOutlineNotificationImportant } from "react-icons/md";
 
 // Services
 import {
   updatePassword,
   deletePassword,
   viewPassword,
+  updatePasswordImportant,
 } from "../../services/mainService";
 
 // Slice
 import {
   deleteSinglePassword,
   updateSpecificPassword,
+  removeDataFromImportant,
 } from "../../slices/authSlice";
 
 const TableOne = () => {
@@ -29,6 +33,7 @@ const TableOne = () => {
   const [passwordID, setPasswordID] = useState("");
   const [passwordLabelView, setPasswordLabelView] = useState("");
   const [passwordCategoryView, setPasswordCategoryView] = useState("main");
+  const [passwordImportanceView, setPasswordImportanceView] = useState(false);
   const [passwordView, setPasswordView] = useState("");
   const [passwordURLView, setPasswordURLView] = useState();
   const [passwordDescriptionView, setPasswordDiscriptionView] = useState("");
@@ -64,6 +69,7 @@ const TableOne = () => {
     setPasswordLabelView(filteredData[0]?.label);
     setPasswordCategoryView(filteredData[0]?.category);
     setPasswordView(filteredData[0]?.password);
+    setPasswordImportanceView(filteredData[0]?.important);
     setPasswordURLView(
       filteredData[0]?.url ? filteredData[0]?.url : "URL or domain name"
     );
@@ -179,6 +185,22 @@ const TableOne = () => {
     }
   };
 
+  const toggleImportance = () => {
+    updatePasswordImportant(token, passwordID)
+      .then((res) => {
+        if (res.status === 201) {
+          dispatch(updateSpecificPassword(res.data));
+          setPasswordImportanceView(res.data?.important);
+          if (passwordImportanceView === false) {
+            dispatch(removeDataFromImportant(passwordID));
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="rounded-sm bg-white px-5 pt-6 pb-2.5 shadow-lg sm:px-7.5 xl:pb-1 font-popins dark:bg-[#111] dark:text-slate-200">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
@@ -264,15 +286,31 @@ const TableOne = () => {
             </div>
             <hr className="mt-2 w-5/12 border-slate-200" />
             <div className="mt-4 mb-4 border border-slate-100 p-2 shadow-md dark:border-slate-900">
-              <div className="mb-2">
-                <IoCopyOutline
-                  className={`float-right ${
-                    isBlurred ? "text-slate-500" : "text-blue cursor-pointer"
-                  }`}
-                  onClick={copyPassword}
-                />
+              <div className="flex items-center justify-end gap-3">
+                <div className="mb-2">
+                  <IoCopyOutline
+                    className={`float-right ${
+                      isBlurred ? "text-slate-500" : "text-blue cursor-pointer"
+                    }`}
+                    onClick={copyPassword}
+                  />
+                </div>
+                {/* {console.log(passwordImportanceView)} */}
+                <div className="mb-2">
+                  {passwordImportanceView ? (
+                    <MdNotificationImportant
+                      className="float-right text-blue cursor-pointer"
+                      onClick={toggleImportance}
+                    />
+                  ) : (
+                    <MdOutlineNotificationImportant
+                      className="float-right text-blue cursor-pointer"
+                      onClick={toggleImportance}
+                    />
+                  )}
+                </div>
               </div>
-              <div className="mt-6 text-xs">
+              <div className="text-xs">
                 <ul>
                   <li className="text-xs mb-2">
                     <span className="font-bold">Password Label</span>{" "}

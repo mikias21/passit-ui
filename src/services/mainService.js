@@ -106,10 +106,31 @@ const viewPassword = async (token, password_id) => {
   }
 };
 
+const updatePasswordImportant = async (token, password_id) => {
+  const customHeader = {
+    headers: {
+      // Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const response = await axios.get(
+      `${API}/passwords/important/${password_id}/${token}`,
+      customHeader
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   getPasswords,
   addPassword,
   updatePassword,
   deletePassword,
   viewPassword,
+  updatePasswordImportant,
 };

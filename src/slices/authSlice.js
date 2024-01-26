@@ -8,8 +8,10 @@ const authSlice = createSlice({
     isAuthenticated: false,
     usePassData: [],
     userPassDataDeleted: [],
+    userPassDataImportant: [],
     passDataCounter: 0,
     deletedPassDataCounter: 0,
+    importantPassDataCounter: 0,
   },
   reducers: {
     setToken: (state, action) => {
@@ -24,6 +26,11 @@ const authSlice = createSlice({
     setUserPassData: (state, action) => {
       state.usePassData = action.payload.data;
       state.passDataCounter = state.usePassData.length;
+    },
+
+    setImportUserPassData: (state, action) => {
+      state.userPassDataImportant = action.payload.data;
+      state.importantPassDataCounter = state.userPassDataImportant?.length;
     },
 
     updateUserPassData: (state, action) => {
@@ -57,6 +64,17 @@ const authSlice = createSlice({
           : password
       );
     },
+
+    removeDataFromImportant: (state, action) => {
+      const passwordToRemove = action.payload;
+      state.userPassDataImportant = [
+        ...state.userPassDataImportant,
+        state.userPassDataImportant.filter(
+          (password) => password.password_id !== passwordToRemove
+        ),
+      ];
+      state.importantPassDataCounter = state.userPassDataImportant.length;
+    },
   },
 });
 
@@ -67,6 +85,8 @@ export const {
   updateUserPassData,
   deleteSinglePassword,
   updateSpecificPassword,
+  setImportUserPassData,
+  removeDataFromImportant,
 } = authSlice.actions;
 
 export default authSlice.reducer;
