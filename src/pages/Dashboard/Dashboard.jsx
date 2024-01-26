@@ -52,8 +52,9 @@ const Dashboard = () => {
           res.data.forEach((item) => {
             if (item?.important === true) important.push(item);
           });
+          const importantData = { data: important };
           dispatch(setUserPassData(data));
-          dispatch(setImportUserPassData({ data: important }));
+          dispatch(setImportUserPassData(importantData));
         }
       })
       .catch();
@@ -94,7 +95,7 @@ const Dashboard = () => {
                     <CardOne title="Issues" amount={0} Icon={IoIosWarning} />
                   </div>
                   <div className="col-span-12 xl:col-span-8 mt-8">
-                    <TableOne data={data} />
+                    <TableOne data={data} title="Recently used or added" />
                   </div>
                 </div>
                 <AddButton />

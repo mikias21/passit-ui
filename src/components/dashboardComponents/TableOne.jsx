@@ -26,10 +26,11 @@ import {
   deleteSinglePassword,
   updateSpecificPassword,
   removeDataFromImportant,
+  updateUserPassImportantData,
 } from "../../slices/authSlice";
 
-const TableOne = ({ data }) => {
-  // const data = useSelector((state) => state.usePassData);
+const TableOne = ({ title, data }) => {
+  const importantPassData = useSelector((state) => state.userPassDataImportant);
   const [passwordID, setPasswordID] = useState("");
   const [passwordLabelView, setPasswordLabelView] = useState("");
   const [passwordCategoryView, setPasswordCategoryView] = useState("main");
@@ -193,6 +194,12 @@ const TableOne = ({ data }) => {
           setPasswordImportanceView(res.data?.important);
           if (passwordImportanceView === false) {
             dispatch(removeDataFromImportant(passwordID));
+          } else if (passwordImportanceView === true) {
+            importantPassData.forEach((item) => {
+              if (item.password_id !== res.data?.password_id) {
+                dispatch(updateUserPassImportantData(res.data));
+              }
+            });
           }
         }
       })
@@ -204,7 +211,7 @@ const TableOne = ({ data }) => {
   return (
     <div className="rounded-sm bg-white px-5 pt-6 pb-2.5 shadow-lg sm:px-7.5 xl:pb-1 font-popins dark:bg-[#111] dark:text-slate-200">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-        Recently used or added
+        {title}
       </h4>
       <ToastContainer
         hideProgressBar={true}
