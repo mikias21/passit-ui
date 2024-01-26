@@ -30,6 +30,7 @@ const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { isAuthenticated } = useAuth();
   const token = useSelector((state) => state.token);
+  const data = useSelector((state) => state.usePassData);
   const passDataCounter = useSelector((state) => state.passDataCounter);
   const deletedPassDataCounter = useSelector(
     (state) => state.deletedPassDataCounter
@@ -93,7 +94,7 @@ const Dashboard = () => {
                     <CardOne title="Issues" amount={0} Icon={IoIosWarning} />
                   </div>
                   <div className="col-span-12 xl:col-span-8 mt-8">
-                    <TableOne />
+                    <TableOne data={data} />
                   </div>
                 </div>
                 <AddButton />

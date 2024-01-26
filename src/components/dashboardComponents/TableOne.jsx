@@ -28,8 +28,8 @@ import {
   removeDataFromImportant,
 } from "../../slices/authSlice";
 
-const TableOne = () => {
-  const data = useSelector((state) => state.usePassData);
+const TableOne = ({ data }) => {
+  // const data = useSelector((state) => state.usePassData);
   const [passwordID, setPasswordID] = useState("");
   const [passwordLabelView, setPasswordLabelView] = useState("");
   const [passwordCategoryView, setPasswordCategoryView] = useState("main");
