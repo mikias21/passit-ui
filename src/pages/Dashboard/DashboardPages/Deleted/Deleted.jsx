@@ -86,6 +86,7 @@ const Deleted = () => {
     setSuccess(false);
     setMessage(false);
     setRequestLoading(true);
+    setRestoreMessage("Password has been restored.");
 
     restoreDeletedPassword(passwordID, token)
       .then((res) => {
@@ -110,6 +111,7 @@ const Deleted = () => {
     setDeleteError(false);
     setDeleteMessage("");
     setDeleteSuccess(false);
+    setDeleteToastMessage("Password has been removed permanently.");
 
     deletePasswordForever(passwordID, passwordLabelView, token)
       .then((res) => {
