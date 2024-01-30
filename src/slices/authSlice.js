@@ -9,6 +9,7 @@ const authSlice = createSlice({
     usePassData: [],
     userPassDataDeleted: [],
     userPassDataImportant: [],
+    userPassDataStarred: [],
     passDataCounter: 0,
     deletedPassDataCounter: 0,
     importantPassDataCounter: 0,
@@ -33,6 +34,10 @@ const authSlice = createSlice({
       state.importantPassDataCounter = state.userPassDataImportant?.length;
     },
 
+    setStarredUserPassData: (state, action) => {
+      state.userPassDataStarred = action.payload.data;
+    },
+
     setDeleteduserData: (state, action) => {
       state.userPassDataDeleted = action.payload.data;
       state.deletedPassDataCounter = state.userPassDataDeleted?.length;
@@ -48,12 +53,18 @@ const authSlice = createSlice({
       state.userPassDataImportant = [...state.userPassDataImportant, entry];
     },
 
+    updateUserPassStarredData: (state, action) => {
+      const entry = action.payload;
+      state.userPassDataStarred = [...state.userPassDataStarred, entry];
+    },
+
     deleteSinglePassword: (state, action) => {
       const passwordToRemove = action.payload;
 
       state.userPassDataDeleted = state.usePassData.filter(
         (password) => password.password_id === passwordToRemove
       );
+
       state.usePassData = state.usePassData.filter(
         (password) => password.password_id !== passwordToRemove
       );
@@ -89,6 +100,16 @@ const authSlice = createSlice({
       ];
       state.importantPassDataCounter = state.userPassDataImportant.length;
     },
+
+    removeDataFromStarred: (state, action) => {
+      const passwordToRemove = action.payload;
+      state.userPassDataStarred = [
+        ...state.userPassDataStarred,
+        state.userPassDataStarred.filter(
+          (password) => password.password_id !== passwordToRemove
+        ),
+      ];
+    },
   },
 });
 
@@ -104,6 +125,9 @@ export const {
   removeDataFromImportant,
   updateUserPassImportantData,
   restorePassword,
+  removeDataFromStarred,
+  updateUserPassStarredData,
+  setStarredUserPassData,
 } = authSlice.actions;
 
 export default authSlice.reducer;

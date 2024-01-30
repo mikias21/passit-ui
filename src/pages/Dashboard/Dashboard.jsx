@@ -22,6 +22,7 @@ import {
   setIsAuthenticated,
   setImportUserPassData,
   setDeleteduserData,
+  setStarredUserPassData,
 } from "../../slices/authSlice";
 
 // Service
@@ -50,12 +51,17 @@ const Dashboard = () => {
         } else {
           const data = { data: res.data };
           let important = [];
+          let starred = [];
           res.data.forEach((item) => {
             if (item?.important === true) important.push(item);
+            if (item?.starred === true) starred.push(item);
           });
+
           const importantData = { data: important };
+          const starredData = { data: starred };
           dispatch(setUserPassData(data));
           dispatch(setImportUserPassData(importantData));
+          dispatch(setStarredUserPassData(starredData));
         }
       })
       .catch();

@@ -6,9 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 // Icons
 import { LuView } from "react-icons/lu";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { MdOutlineStar } from "react-icons/md";
 import { IoCopyOutline } from "react-icons/io5";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoCheckmarkSharp } from "react-icons/io5";
+import { MdOutlineStarBorder } from "react-icons/md";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { MdNotificationImportant } from "react-icons/md";
 import { MdOutlineNotificationImportant } from "react-icons/md";
@@ -19,6 +21,7 @@ import {
   deletePassword,
   viewPassword,
   updatePasswordImportant,
+  updatePasswordStarred,
 } from "../../services/mainService";
 
 // Slice
@@ -27,14 +30,18 @@ import {
   updateSpecificPassword,
   removeDataFromImportant,
   updateUserPassImportantData,
+  removeDataFromStarred,
+  updateUserPassStarredData,
 } from "../../slices/authSlice";
 
 const TableOne = ({ title, data }) => {
   const importantPassData = useSelector((state) => state.userPassDataImportant);
+  const starredPassData = useSelector((state) => state.userPassDataStarred);
   const [passwordID, setPasswordID] = useState("");
   const [passwordLabelView, setPasswordLabelView] = useState("");
   const [passwordCategoryView, setPasswordCategoryView] = useState("main");
   const [passwordImportanceView, setPasswordImportanceView] = useState(false);
+  const [passwordStarredView, setPasswordStarredView] = useState(false);
   const [passwordView, setPasswordView] = useState("");
   const [passwordURLView, setPasswordURLView] = useState();
   const [passwordDescriptionView, setPasswordDiscriptionView] = useState("");
@@ -71,6 +78,7 @@ const TableOne = ({ title, data }) => {
     setPasswordCategoryView(filteredData[0]?.category);
     setPasswordView(filteredData[0]?.password);
     setPasswordImportanceView(filteredData[0]?.important);
+    setPasswordStarredView(filteredData[0]?.starred);
     setPasswordURLView(
       filteredData[0]?.url ? filteredData[0]?.url : "URL or domain name"
     );
@@ -208,6 +216,26 @@ const TableOne = ({ title, data }) => {
       });
   };
 
+  const toggleStarred = () => {
+    updatePasswordStarred(token, passwordID)
+      .then((res) => {
+        if (res.status === 201) {
+          dispatch(updateSpecificPassword(res.data));
+          setPasswordStarredView(res.data?.starred);
+          if (passwordStarredView === false) {
+            dispatch(removeDataFromStarred(passwordID));
+          } else if (passwordStarredView === true) {
+            starredPassData.forEach((item) => {
+              if (item.password_id !== res.data?.password_id) {
+                dispatch(updateUserPassStarredData(res.data));
+              }
+            });
+          }
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="rounded-sm bg-white px-5 pt-6 pb-2.5 shadow-lg sm:px-7.5 xl:pb-1 font-popins dark:bg-[#111] dark:text-slate-200">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
@@ -313,6 +341,19 @@ const TableOne = ({ title, data }) => {
                     <MdOutlineNotificationImportant
                       className="float-right text-blue cursor-pointer"
                       onClick={toggleImportance}
+                    />
+                  )}
+                </div>
+                <div className="mb-2">
+                  {passwordStarredView ? (
+                    <MdOutlineStar
+                      className="float-right text-blue cursor-pointer"
+                      onClick={toggleStarred}
+                    />
+                  ) : (
+                    <MdOutlineStarBorder
+                      className="float-right text-blue cursor-pointer"
+                      onClick={toggleStarred}
                     />
                   )}
                 </div>
