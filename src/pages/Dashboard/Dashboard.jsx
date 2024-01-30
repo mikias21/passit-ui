@@ -21,10 +21,11 @@ import {
   setUserPassData,
   setIsAuthenticated,
   setImportUserPassData,
+  setDeleteduserData,
 } from "../../slices/authSlice";
 
 // Service
-import { getPasswords } from "../../services/mainService";
+import { getPasswords, getDeletedPasswords } from "../../services/mainService";
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -58,6 +59,17 @@ const Dashboard = () => {
         }
       })
       .catch();
+
+    getDeletedPasswords(token)
+      .then((res) => {
+        if (res.status === 200) {
+          const data = { data: res.data };
+          dispatch(setDeleteduserData(data));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [dispatch, token]);
 
   return (

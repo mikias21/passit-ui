@@ -126,6 +126,62 @@ const updatePasswordImportant = async (token, password_id) => {
   }
 };
 
+const getDeletedPasswords = async (token) => {
+  const customHeader = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const response = await axios.get(`${API}/passwords/deleted/`, customHeader);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const restoreDeletedPassword = async (password_id, token) => {
+  const customHeader = {
+    headers: {
+      // Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const response = await axios.put(
+      `${API}/passwords/deleted/restore/${password_id}/${token}`,
+      customHeader
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const deletePasswordForever = async (password_id, label, token) => {
+  try {
+    const response = await axios.delete(
+      `${API}/passwords/deleted/delete/${password_id}/${token}`,
+      {
+        data: { label },
+        headers: {
+          // Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   getPasswords,
   addPassword,
@@ -133,4 +189,7 @@ export {
   deletePassword,
   viewPassword,
   updatePasswordImportant,
+  getDeletedPasswords,
+  restoreDeletedPassword,
+  deletePasswordForever,
 };

@@ -33,6 +33,11 @@ const authSlice = createSlice({
       state.importantPassDataCounter = state.userPassDataImportant?.length;
     },
 
+    setDeleteduserData: (state, action) => {
+      state.userPassDataDeleted = action.payload.data;
+      state.deletedPassDataCounter = state.userPassDataDeleted?.length;
+    },
+
     updateUserPassData: (state, action) => {
       const entry = action.payload;
       state.usePassData = [...state.usePassData, entry];
@@ -53,6 +58,14 @@ const authSlice = createSlice({
         (password) => password.password_id !== passwordToRemove
       );
 
+      state.deletedPassDataCounter = state.userPassDataDeleted.length;
+    },
+
+    restorePassword: (state, action) => {
+      const passwordToRemove = action.payload;
+      state.userPassDataDeleted = state.userPassDataDeleted.filter(
+        (password) => password.password_id !== passwordToRemove
+      );
       state.deletedPassDataCounter = state.userPassDataDeleted.length;
     },
 
@@ -83,12 +96,14 @@ export const {
   setToken,
   setIsAuthenticated,
   setUserPassData,
+  setDeleteduserData,
   updateUserPassData,
   deleteSinglePassword,
   updateSpecificPassword,
   setImportUserPassData,
   removeDataFromImportant,
   updateUserPassImportantData,
+  restorePassword,
 } = authSlice.actions;
 
 export default authSlice.reducer;
