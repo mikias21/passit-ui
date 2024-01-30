@@ -34,7 +34,7 @@ const Starred = () => {
                 <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10 ">
                   <AddButton />
                   <div className="col-span-12 xl:col-span-8">
-                    <TableOne data={data} title="Chosen to be important" />
+                    <TableOne data={data} title="Your favorite ones" />
                   </div>
                 </div>
               </main>
