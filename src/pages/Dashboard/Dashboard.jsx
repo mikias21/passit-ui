@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
 
 // Icons
 import { MdDelete } from "react-icons/md";
@@ -17,13 +18,18 @@ import AddButton from "../../components/dashboardComponents/AddButton";
 
 // Custom hooks
 import useAuth from "../../hooks/useAuth";
+
+// Slices
 import {
   setUserPassData,
   setIsAuthenticated,
   setImportUserPassData,
   setDeleteduserData,
   setStarredUserPassData,
+  setUserPassCategories,
 } from "../../slices/authSlice";
+
+import { getCategories } from "../../services/categories";
 
 // Service
 import { getPasswords, getDeletedPasswords } from "../../services/mainService";
@@ -76,6 +82,15 @@ const Dashboard = () => {
       .catch((err) => {
         console.log(err);
       });
+
+    getCategories(token)
+      .then((res) => {
+        if (res.status === 200) {
+          const categories = { data: res.data };
+          dispatch(setUserPassCategories(categories));
+        }
+      })
+      .catch((err) => console.log(err));
   }, [dispatch, token]);
 
   return (

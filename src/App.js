@@ -15,6 +15,7 @@ import ActivateAccount from "./pages/ActivateAccount/ActivateAccount";
 import Starred from "./pages/Dashboard/DashboardPages/Starred/Starred";
 import Deleted from "./pages/Dashboard/DashboardPages/Deleted/Deleted";
 import Important from "./pages/Dashboard/DashboardPages/Important/Important";
+import Categories from "./pages/Dashboard/DashboardPages/Categories/Categories";
 
 import "./App.css";
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/starred" Component={Starred} />
           <Route path="/important" Component={Important} />
           <Route path="/deleted" Component={Deleted} />
+          <Route path="/categories" Component={Categories} />
           <Route path="/signin" Component={SigninPage} />
           <Route path="/signup" Component={SignupPage} />
           <Route path="/reset/:token" Component={ResetPassword} />

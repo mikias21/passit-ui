@@ -10,9 +10,11 @@ const authSlice = createSlice({
     userPassDataDeleted: [],
     userPassDataImportant: [],
     userPassDataStarred: [],
+    userPassCategories: [],
     passDataCounter: 0,
     deletedPassDataCounter: 0,
     importantPassDataCounter: 0,
+    showAddCategoriesModal: false,
   },
   reducers: {
     setToken: (state, action) => {
@@ -43,6 +45,14 @@ const authSlice = createSlice({
       state.deletedPassDataCounter = state.userPassDataDeleted?.length;
     },
 
+    setAddCategoryModal: (state, action) => {
+      state.showAddCategoriesModal = action.payload;
+    },
+
+    setUserPassCategories: (state, action) => {
+      state.userPassCategories = action.payload.data;
+    },
+
     updateUserPassData: (state, action) => {
       const entry = action.payload;
       state.usePassData = [...state.usePassData, entry];
@@ -56,6 +66,11 @@ const authSlice = createSlice({
     updateUserPassStarredData: (state, action) => {
       const entry = action.payload;
       state.userPassDataStarred = [...state.userPassDataStarred, entry];
+    },
+
+    updateUserPassCategoriesData: (state, action) => {
+      const entry = action.payload;
+      state.userPassCategories = [...state.userPassCategories, entry];
     },
 
     deleteSinglePassword: (state, action) => {
@@ -128,6 +143,9 @@ export const {
   removeDataFromStarred,
   updateUserPassStarredData,
   setStarredUserPassData,
+  setAddCategoryModal,
+  setUserPassCategories,
+  updateUserPassCategoriesData,
 } = authSlice.actions;
 
 export default authSlice.reducer;
