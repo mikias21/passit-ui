@@ -148,7 +148,7 @@ const AddButton = () => {
                     className="w-full outline-none dark:bg-[#111] dark:text-slate-200"
                     onChange={(e) => setCategory(e.target.value)}
                   >
-                    <option value="" disabled>
+                    <option value="" disabled selected>
                       Choose category
                     </option>
                     {categories.map((category) => (
