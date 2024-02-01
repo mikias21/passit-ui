@@ -16,7 +16,7 @@ const AddButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [label, setLabel] = useState("");
   const [password, setPassword] = useState("");
-  const [category, setCategory] = useState("main");
+  const [category, setCategory] = useState("");
   const [url, setURL] = useState("");
   const [description, setDescription] = useState("");
   const token = useSelector((state) => state.token);
@@ -25,6 +25,8 @@ const AddButton = () => {
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const categories = useSelector((state) => state.userPassCategories);
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -132,7 +134,7 @@ const AddButton = () => {
                 >
                   Category
                 </label>
-                <input
+                {/* <input
                   type="text"
                   id="category"
                   placeholder="default category is main"
@@ -140,7 +142,19 @@ const AddButton = () => {
                   disabled={true}
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                />
+                /> */}
+                <div className="border border-slate-300 mt-2 p-2 text-xs dark:border-slate-600">
+                  <select
+                    className="w-full outline-none dark:bg-[#111] dark:text-slate-200"
+                    onChange={(e) => setCategory(e.target.value)}
+                  >
+                    {categories.map((category) => (
+                      <option value={category.name} key={category.category_id}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
               <div className="mt-3">
                 <label
