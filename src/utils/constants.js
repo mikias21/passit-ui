@@ -4,7 +4,7 @@ const constants = {
   // RELEASE_API: "https://sea-lion-app-2tsvx.ondigitalocean.app",
   // RELEASE_API: "http://3.83.121.237",
   RELEASE_API: "/api",
-  RELEASE: false,
+  RELEASE: true,
 };
 
 export default constants;
