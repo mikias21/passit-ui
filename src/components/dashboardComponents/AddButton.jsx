@@ -39,26 +39,27 @@ const AddButton = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    addPassword(token, label, password, category, url, description)
-      .then((res) => {
-        if (res.data?.status === null) {
-          setPassword("");
-          setLabel("");
-          setURL("");
-          setDescription("");
-          setError(false);
-          setSuccess(true);
-          setMessage("Password added successfully");
-          setIsLoading(false);
-          dispatch(updateUserPassData(res.data));
-        } else if (res.data?.status === 406) {
-          setSuccess(false);
-          setError(true);
-          setIsLoading(false);
-          setMessage(res.data?.message);
-        }
-      })
-      .catch();
+    addPassword(token, label, password, category, url, description);
+    // .then((res) => {
+    //   if (res.data?.status === null) {
+    //     setPassword("");
+    //     setLabel("");
+    //     setURL("");
+    //     setDescription("");
+    //     setError(false);
+    //     setSuccess(true);
+    //     setMessage("Password added successfully");
+    //     setIsLoading(false);
+    //     dispatch(updateUserPassData(res.data));
+    //   } else if (res.data?.status === 406) {
+    //     setSuccess(false);
+    //     setError(true);
+    //     setIsLoading(false);
+    //     setMessage(res.data?.message);
+    //   }
+    // })
+    // .catch();
+    console.log(category);
   };
 
   return (
