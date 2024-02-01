@@ -133,7 +133,7 @@ const SignupPage = () => {
                 />
                 <FaLock className="absolute right-7 top-1/2 transform -translate-y-1/2 text-slate-500" />
               </div>
-              <div className="text-xs mt-2 p-3 border border-slate-100 bg-green-50 pl-5">
+              <div className="text-xs mt-2 p-3 border border-slate-100 bg-green-50 pl-5 dark:bg-transparent dark:border-slate-800 dark:text-green-200">
                 <ul className=" list-disc">
                   <li className="m-1">
                     Should have at least 8 characters long
