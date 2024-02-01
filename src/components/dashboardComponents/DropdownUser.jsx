@@ -89,7 +89,7 @@ const DropdownUser = () => {
         <ul className="flex flex-col gap-3 border-b border-b-slate-200 border-stroke py-7.5 dark:border-strokedark dark:text-slate-200">
           <li>
             <Link
-              to="#"
+              to="/profile"
               className="flex items-center gap-3.5 text-sm p-2 font-medium duration-300 ease-in-out hover:text-primary w-full hover:bg-[#BFDBFE] rounded-sm dark:hover:bg-slate-500"
             >
               <FaUserAlt className="text-lg" />

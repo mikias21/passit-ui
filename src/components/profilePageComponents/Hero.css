@@ -1,0 +1,7 @@
+.hero-container{
+    background-image: url('/public/images/peak_light.png');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    object-fit: contain;
+}

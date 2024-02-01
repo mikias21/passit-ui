@@ -2,6 +2,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Routes } from "react-router";
 
 // Pages
+import ProfilePage from "./pages/Profile";
 import Signout from "./pages/Signout/Signout";
 import Landing from "./pages/Landing/Landing";
 import NotFound from "./pages/NotFound/NotFound";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/important" Component={Important} />
           <Route path="/deleted" Component={Deleted} />
           <Route path="/categories" Component={Categories} />
+          <Route path="/profile" Component={ProfilePage} />
           <Route path="/signin" Component={SigninPage} />
           <Route path="/signup" Component={SignupPage} />
           <Route path="/reset/:token" Component={ResetPassword} />
