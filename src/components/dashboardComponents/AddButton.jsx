@@ -39,8 +39,6 @@ const AddButton = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    console.log(category);
-
     addPassword(token, label, password, category, url, description)
       .then((res) => {
         if (res.data?.status === null) {
@@ -150,6 +148,9 @@ const AddButton = () => {
                     className="w-full outline-none dark:bg-[#111] dark:text-slate-200"
                     onChange={(e) => setCategory(e.target.value)}
                   >
+                    <option value="" disabled>
+                      Choose category
+                    </option>
                     {categories.map((category) => (
                       <option value={category.name} key={category.category_id}>
                         {category.name}
